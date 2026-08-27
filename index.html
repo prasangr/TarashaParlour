@@ -100,10 +100,11 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
   linear-gradient(to top,var(--ink) 2%,transparent 34%),
   linear-gradient(rgba(18,8,16,0.3),rgba(18,8,16,0.3))}
 .hero-inner{position:relative;z-index:2;padding:8rem var(--pad) 5rem;grid-column:1}
-.hero-emblem{display:flex;align-items:center;gap:0.9rem;margin-bottom:2rem}
-.hero-emblem img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.5)}
-.hero-emblem div{font-size:var(--t-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);line-height:1.9}
-.hero-emblem span{display:block;color:var(--muted);opacity:0.75}
+.hero-emblem{display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;margin-bottom:2.2rem}
+.hero-emblem img{width:clamp(132px,14vw,190px);aspect-ratio:1;height:auto;border-radius:50%;object-fit:cover;
+  border:1px solid rgba(212,174,88,0.55);box-shadow:0 0 0 7px rgba(212,174,88,0.07),0 18px 44px rgba(0,0,0,0.55)}
+.hero-place{font-size:var(--t-sm);color:var(--muted);line-height:1.6;margin:-0.5rem 0 1.6rem}
+.hero-place i{font-style:normal;color:var(--gold);margin:0 0.6rem;opacity:0.85}
 .hero h1{font-size:clamp(2.5rem,5.6vw,4.9rem);line-height:1.03;margin-bottom:1.4rem;font-weight:400}
 .hero h1 em{font-style:italic;color:var(--gold-lt)}
 /* the salon's own script, echoing the sign — the real neon stays in the photograph */
@@ -454,7 +455,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .hero-media img{object-position:58% 45%}
   .hero-scrim{background:linear-gradient(to top,var(--ink) 1%,rgba(18,8,16,0.15) 55%)}
   .hero-inner{padding:2.5rem var(--pad) 1rem;grid-column:1}
-  .hero-emblem{margin-bottom:1.5rem}
+  .hero-emblem{margin-bottom:1.6rem;gap:0.9rem}
   .hero-badge{position:static;text-align:left;border-right:0;border-left:1px solid var(--line);padding:0 0 0 1.1rem;margin-top:2rem;display:inline-block}
   .about-inner,.bridal-inner,.contact-inner{grid-template-columns:1fr}
   .about-photo-main::before{inset:-10px -10px 10px 10px}
@@ -551,9 +552,9 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   </div>
   <div class="hero-inner">
     <div class="hero-emblem anim d1">
-      <img src="assets/7e9e56c3.jpg" alt="Tarasha's Complete Beauty Zone logo">
-      <div>Ladies Beauty Salon &mdash; Bhopal<span>Sonagiri, BHEL Bhopal</span></div>
+      <img src="assets/85d54fed.jpg" alt="Tarasha's — Complete Beauty Zone, the sign in the salon">
     </div>
+    <p class="hero-place anim d1">Ladies Beauty Salon<i>&middot;</i>Sonagiri, BHEL Bhopal</p>
     <h1 class="anim d2">Where Your <em>Bridal Dreams</em><br>Take Place</h1>
     <p class="anim d2"><span class="script-name">Tarasha's</span></p>
     <p class="hero-zone anim d3">A Complete Beauty Zone</p>
