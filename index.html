@@ -10,18 +10,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Ground: the plaster wall the logo hangs on */
-  --ink:#F7F2EC; --ink-2:#FFFFFF; --ink-3:#F4E6E7;
+  /* Ground: the cherry-blossom wallpaper the logo hangs on */
+  --ink:#EFDFDC; --ink-2:#FBF4F2; --ink-3:#E4CDC9;
   /* Gold: the logo ring. -lt stays light for type over photography,
      -deep carries the same gold on the cream ground */
-  --gold:#86601A; --gold-lt:#E8CE8B; --gold-deep:#7C5A16;
+  --gold:#7C5615; --gold-lt:#E8CE8B; --gold-deep:#6B4810;
   /* Neon: the sign's magenta, darkened enough to read on cream */
   --neon:#D4177E; --neon-soft:#FF7BC4;
   /* Type: deep aubergine on cream; --on-dark for anything over a photo */
-  --ivory:#2A1A24; --muted:#6A5762; --on-dark:#F4EBE2;
+  --ivory:#2A1620; --muted:#665059; --on-dark:#F4EBE2;
   --dark:#0F0713;
-  --line:rgba(134,96,26,0.32);
-  --line-soft:rgba(42,26,36,0.14);
+  --line:rgba(124,86,21,0.34);
+  --line-soft:rgba(42,22,32,0.16);
   --shell:min(1240px,100%);
   --pad:clamp(1.25rem,5vw,4.5rem);
 }
@@ -59,7 +59,7 @@ section{padding:clamp(4rem,8vw,7rem) var(--pad)}
 /* ══ NAV ══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;
   padding:1.1rem var(--pad);transition:background 0.4s,padding 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
-nav.stuck{background:rgba(247,242,236,0.94);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
+nav.stuck{background:rgba(239,223,220,0.94);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.55)}
 .nav-brand-text{display:flex;flex-direction:column;line-height:1}
@@ -310,7 +310,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 .footer-bottom p{font-size:0.7rem;color:var(--muted);opacity:0.5;letter-spacing:0.04em}
 
 /* ══ STICKY MOBILE ACTION BAR ══ */
-.mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(247,242,236,0.97);backdrop-filter:blur(14px);
+.mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(239,223,220,0.97);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);padding:0.7rem 0.9rem calc(0.7rem + env(safe-area-inset-bottom));gap:0.7rem}
 .mobile-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;font-size:0.74rem;font-weight:500;
   letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem;border-radius:999px}
@@ -345,7 +345,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 @media(max-width:860px){
   /* backdrop-filter makes nav a containing block for fixed children, which
      traps the menu inside the 64px bar — keep the scrolled nav unfiltered here */
-  nav.stuck{backdrop-filter:none;background:rgba(247,242,236,0.98)}
+  nav.stuck{backdrop-filter:none;background:rgba(239,223,220,0.98)}
   .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:1.8rem;background:var(--ink);
     transform:translateY(-100%);visibility:hidden;transition:transform 0.5s cubic-bezier(.6,0,.2,1),visibility 0.5s;z-index:-1}
   nav.open .nav-links{transform:translateY(0);visibility:visible}
@@ -429,6 +429,7 @@ nav.stuck .btn-nav:hover{background:var(--gold);color:var(--ink)!important}
 .footer-contact-quick a:hover,.footer-col a:hover,.pill:hover{color:var(--gold-deep)}
 .btn-primary:hover,.btn-gold:hover,.btn-submit:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
 :focus-visible{outline-color:var(--gold)}
+.bridal .eyebrow{color:var(--gold-deep)}
 
 .hero .btn-primary{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--dark)}
 .hero .btn-primary:hover{background:#fff;border-color:#fff}
