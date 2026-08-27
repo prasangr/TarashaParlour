@@ -341,9 +341,12 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .why-card:nth-child(even){padding-left:1.8rem}
 }
 @media(max-width:860px){
+  /* backdrop-filter makes nav a containing block for fixed children, which
+     traps the menu inside the 64px bar — keep the scrolled nav unfiltered here */
+  nav.stuck{backdrop-filter:none;background:rgba(10,5,16,0.97)}
   .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:1.8rem;background:var(--ink);
-    transform:translateY(-100%);transition:transform 0.5s cubic-bezier(.6,0,.2,1);z-index:-1}
-  nav.open .nav-links{transform:translateY(0)}
+    transform:translateY(-100%);visibility:hidden;transition:transform 0.5s cubic-bezier(.6,0,.2,1),visibility 0.5s;z-index:-1}
+  nav.open .nav-links{transform:translateY(0);visibility:visible}
   .nav-links a{font-family:'Bodoni Moda',serif;font-size:1.5rem;letter-spacing:0.04em;text-transform:none;color:var(--ivory);font-weight:400}
   .nav-links .btn-nav{font-family:'Jost',sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.16em;padding:0.8rem 1.8rem}
   .nav-toggle{display:block;z-index:2}
@@ -814,7 +817,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <optgroup label="Makeup"><option>Simple Makeup</option><option>HD Makeup</option><option>Party Makeup</option><option>Garba Makeup</option><option>Sangeet Makeup</option><option>Engagement Look</option><option>Marriage Makeup</option><option>Reception Makeup</option></optgroup>
           <optgroup label="Bridal"><option>Full Bridal Package</option><option>Pre-Bridal Therapy</option><option>Lehenga Rental</option><option>Jewellery Rental</option></optgroup>
         </select>
-        <input class="inp" type="date" id="bkDate" required>
+        <input class="inp" type="text" id="bkDate" placeholder="Select Date" required>
       </div>
       <div class="form-grid full">
         <input class="inp" type="text" id="bkNotes" placeholder="Special requests (optional)">
@@ -971,7 +974,12 @@ function sendBooking(e){
   return false;
 }
 
-document.getElementById('bkDate').min = new Date().toISOString().slice(0,10);  // no past dates
+// a bare type=date shows the locale mask (dd-mm-yyyy); start as text so the
+// field reads "Select Date", and switch to the real date picker on focus
+var bkDate = document.getElementById('bkDate');
+bkDate.min = new Date().toISOString().slice(0,10);  // no past dates
+bkDate.addEventListener('focus', function(){ this.type = 'date'; });
+bkDate.addEventListener('blur', function(){ if(!this.value) this.type = 'text'; });
 </script>
 <div class="mobile-bar">
   <a class="mb-call" href="tel:+919691566637">Call</a>
