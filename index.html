@@ -10,16 +10,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Ground: the warm dark the neon sign lives in */
-  --ink:#0A0510; --ink-2:#140A1B; --ink-3:#1D0F26;
-  /* Gold: lifted from the logo ring */
-  --gold:#C9A44C; --gold-lt:#E8CE8B;
-  /* Neon: the actual magenta of the salon's sign */
-  --neon:#FF2FA0; --neon-soft:#FF7BC4;
-  /* Ivory: the plaster wall behind the logo */
-  --ivory:#F4EBE2; --muted:#B6A2BC;
-  --line:rgba(201,164,76,0.20);
-  --line-soft:rgba(244,235,226,0.09);
+  /* Ground: the plaster wall the logo hangs on */
+  --ink:#F7F2EC; --ink-2:#FFFFFF; --ink-3:#F4E6E7;
+  /* Gold: the logo ring. -lt stays light for type over photography,
+     -deep carries the same gold on the cream ground */
+  --gold:#86601A; --gold-lt:#E8CE8B; --gold-deep:#7C5A16;
+  /* Neon: the sign's magenta, darkened enough to read on cream */
+  --neon:#D4177E; --neon-soft:#FF7BC4;
+  /* Type: deep aubergine on cream; --on-dark for anything over a photo */
+  --ivory:#2A1A24; --muted:#6A5762; --on-dark:#F4EBE2;
+  --dark:#0F0713;
+  --line:rgba(134,96,26,0.32);
+  --line-soft:rgba(42,26,36,0.14);
   --shell:min(1240px,100%);
   --pad:clamp(1.25rem,5vw,4.5rem);
 }
@@ -57,7 +59,7 @@ section{padding:clamp(4rem,8vw,7rem) var(--pad)}
 /* ══ NAV ══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;
   padding:1.1rem var(--pad);transition:background 0.4s,padding 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
-nav.stuck{background:rgba(10,5,16,0.92);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
+nav.stuck{background:rgba(247,242,236,0.94);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.55)}
 .nav-brand-text{display:flex;flex-direction:column;line-height:1}
@@ -78,14 +80,14 @@ nav.open .nav-toggle span:nth-child(2){opacity:0}
 nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 /* ══ HERO — opens on the salon's own neon sign ══ */
-.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;padding:0;overflow:hidden;background:var(--ink)}
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;padding:0;overflow:hidden;background:var(--dark)}
 .hero-media{position:absolute;inset:0;z-index:0}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:62% 42%;animation:slowZoom 14s ease-out forwards}
 @keyframes slowZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
 .hero-scrim{position:absolute;inset:0;background:
-  linear-gradient(100deg,var(--ink) 0%,rgba(10,5,16,0.95) 34%,rgba(10,5,16,0.6) 58%,rgba(10,5,16,0.45) 100%),
-  linear-gradient(to top,var(--ink) 2%,transparent 34%),
-  linear-gradient(rgba(10,5,16,0.3),rgba(10,5,16,0.3))}
+  linear-gradient(100deg,var(--dark) 0%,rgba(15,7,19,0.95) 34%,rgba(15,7,19,0.6) 58%,rgba(15,7,19,0.45) 100%),
+  linear-gradient(to top,var(--dark) 2%,transparent 34%),
+  linear-gradient(rgba(15,7,19,0.3),rgba(15,7,19,0.3))}
 .hero-inner{position:relative;z-index:2;padding:8rem var(--pad) 5rem;grid-column:1}
 .hero-emblem{display:flex;align-items:center;gap:0.9rem;margin-bottom:2rem}
 .hero-emblem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.5)}
@@ -137,7 +139,7 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .lg-item{position:relative;overflow:hidden;cursor:pointer;background:#0a0610;border-radius:3px}
 .lg-item::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.4s;pointer-events:none;z-index:3;border-radius:3px}
 .lg-item:hover::after{border-color:rgba(201,164,76,0.55)}
-.lg-item img{width:100%;height:100%;object-fit:cover;filter:brightness(0.82) saturate(1.05);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
+.lg-item img{width:100%;height:100%;object-fit:cover;filter:brightness(0.96) saturate(1.04);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
 .lg-item:hover img{filter:brightness(1) saturate(1.12);transform:scale(1.05)}
 .lg-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,16,0.85) 0%,rgba(10,5,16,0.1) 55%);pointer-events:none;z-index:2}
 .lg-item-caption{position:absolute;bottom:1.1rem;left:1.2rem;right:1.2rem;z-index:3;pointer-events:none}
@@ -195,7 +197,7 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 
 /* ══ BRIDAL — the medallion watermark lives here ══ */
 .bridal{background:var(--ink-3);position:relative;overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.bridal-watermark{position:absolute;top:50%;right:-14%;width:min(760px,86vw);height:min(760px,86vw);transform:translateY(-50%);color:var(--gold);opacity:0.055;pointer-events:none;z-index:0}
+.bridal-watermark{position:absolute;top:50%;right:-14%;width:min(760px,86vw);height:min(760px,86vw);transform:translateY(-50%);color:var(--gold);opacity:0.11;pointer-events:none;z-index:0}
 .bridal-inner{position:relative;z-index:1;width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
 .bridal-tagline{font-family:'Sacramento',cursive;font-size:1.9rem;color:var(--gold-lt);margin:1.2rem 0 1.4rem;line-height:1.2}
 .bridal-desc{font-size:0.97rem;line-height:1.9;margin-bottom:2.2rem;max-width:50ch}
@@ -227,7 +229,7 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .bg-tile{position:relative;overflow:hidden;cursor:pointer;background:#0a0610;aspect-ratio:3/4;border-radius:3px}
 .bg-tile::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.4s;z-index:3;pointer-events:none;border-radius:3px}
 .bg-tile:hover::after{border-color:rgba(201,164,76,0.6)}
-.bg-tile img{width:100%;height:100%;object-fit:cover;filter:brightness(0.86) saturate(1.03);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
+.bg-tile img{width:100%;height:100%;object-fit:cover;filter:brightness(0.97) saturate(1.03);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
 .bg-tile:hover img{filter:brightness(1.02) saturate(1.12);transform:scale(1.05)}
 .bg-tile-badge{position:absolute;bottom:0.9rem;left:0.9rem;right:0.9rem;font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-lt);
   font-weight:500;z-index:3;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
@@ -308,7 +310,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 .footer-bottom p{font-size:0.7rem;color:var(--muted);opacity:0.5;letter-spacing:0.04em}
 
 /* ══ STICKY MOBILE ACTION BAR ══ */
-.mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(10,5,16,0.96);backdrop-filter:blur(14px);
+.mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(247,242,236,0.97);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);padding:0.7rem 0.9rem calc(0.7rem + env(safe-area-inset-bottom));gap:0.7rem}
 .mobile-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;font-size:0.74rem;font-weight:500;
   letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem;border-radius:999px}
@@ -343,7 +345,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 @media(max-width:860px){
   /* backdrop-filter makes nav a containing block for fixed children, which
      traps the menu inside the 64px bar — keep the scrolled nav unfiltered here */
-  nav.stuck{backdrop-filter:none;background:rgba(10,5,16,0.97)}
+  nav.stuck{backdrop-filter:none;background:rgba(247,242,236,0.98)}
   .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:1.8rem;background:var(--ink);
     transform:translateY(-100%);visibility:hidden;transition:transform 0.5s cubic-bezier(.6,0,.2,1),visibility 0.5s;z-index:-1}
   nav.open .nav-links{transform:translateY(0);visibility:visible}
@@ -354,7 +356,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:2rem}
   .hero-media{position:relative;height:42svh;min-height:280px}
   .hero-media img{object-position:58% 45%}
-  .hero-scrim{background:linear-gradient(to top,var(--ink) 1%,rgba(10,5,16,0.15) 55%)}
+  .hero-scrim{background:linear-gradient(to top,var(--dark) 1%,rgba(15,7,19,0.15) 55%)}
   .hero-inner{padding:2.5rem var(--pad) 1rem;grid-column:1}
   .hero-emblem{margin-bottom:1.5rem}
   .hero-badge{position:static;text-align:left;border-right:0;border-left:1px solid var(--line);padding:0 0 0 1.1rem;margin-top:2rem;display:inline-block}
@@ -367,7 +369,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .lb-close{top:-3rem;width:34px;height:34px}
   .mobile-bar{display:flex}
   body{padding-bottom:4.6rem}
-  .bridal-watermark{right:-40%;opacity:0.04}
+  .bridal-watermark{right:-40%;opacity:0.10}
 }
 @media(max-width:600px){
   .lg-grid{grid-template-columns:1fr}
@@ -391,11 +393,60 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .marquee-track{animation:none}
 }
 
+/* ══ LIGHT GROUND: roles that flip ══
+   --gold-lt stays light gold for type over photography and the dark hero;
+   --gold-deep is the same gold at a weight that reads on cream. */
+
+/* the hero is a dark block at the top of a light page */
+.hero h1,.hero-badge .hf-num{color:var(--on-dark)}
+.hero-desc{color:rgba(244,235,226,0.82)}
+.hero-emblem div,.hero-zone,.hero-badge .hf-lbl{color:var(--gold-lt)}
+.hero-emblem span,.hero-hours{color:rgba(244,235,226,0.7)}
+.hero-hours b{color:var(--gold-lt)}
+.hero-hours{border-top-color:rgba(232,206,139,0.3)}
+.hero-badge{border-right-color:rgba(232,206,139,0.3)}
+.btn-ghost{color:var(--on-dark);border-color:rgba(244,235,226,0.28)}
+
+/* nav is transparent over the dark hero, cream once it sticks */
+.nav-brand-name,.nav-toggle{color:var(--on-dark)}
+.nav-brand-sub,.nav-links a{color:rgba(244,235,226,0.82)}
+.btn-nav{border-color:var(--gold-lt);color:var(--gold-lt)!important}
+.btn-nav:hover{background:var(--gold-lt);color:var(--dark)!important}
+nav.stuck .nav-brand-name,nav.stuck .nav-toggle,nav.stuck .nav-links a:hover{color:var(--ivory)}
+nav.stuck .nav-brand-sub{color:var(--gold)}
+nav.stuck .nav-links a{color:var(--muted)}
+nav.stuck .btn-nav{border-color:var(--gold);color:var(--gold-deep)!important}
+nav.stuck .btn-nav:hover{background:var(--gold);color:var(--ink)!important}
+
+/* text over photographs stays light */
+.lg-item-caption h4,.bg-tile-zoom,.lb-close,.lb-nav{color:var(--on-dark)}
+.lg-item-caption p{color:var(--gold-lt)}
+.lb-counter{color:rgba(244,235,226,0.65)}
+
+/* emphasis gold on the cream ground */
+.section-title em,.bridal-tagline,.stat-num,.contact-item b,.lg-cta,
+.pill.special,.pill.gold,.btn-map,.mb-call,.contact-item a:hover,
+.footer-contact-quick a:hover,.footer-col a:hover,.pill:hover{color:var(--gold-deep)}
+.btn-primary:hover,.btn-gold:hover,.btn-submit:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+:focus-visible{outline-color:var(--gold)}
+
+.hero .btn-primary{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--dark)}
+.hero .btn-primary:hover{background:#fff;border-color:#fff}
+
+/* form fields lift off the cream instead of sinking into it */
+.inp{background:#fff;border-color:rgba(42,26,36,0.16)}
+.inp:focus{background:#fff;border-color:var(--gold);box-shadow:0 0 0 3px rgba(143,106,30,0.12)}
+select.inp option{background:#fff;color:var(--ivory)}
+
+/* softer separation between the cream bands */
+.marquee-wrap,.bridal,.bridal-gallery,.map-strip,footer{border-color:rgba(42,26,36,0.1)}
+.about-photo-main::before{border-color:var(--line)}
+
 /* content defaults */
 .section-title{margin-bottom:1rem}
 .services-header p:not(.eyebrow),.makeup-header p:not(.eyebrow),.why-header p:not(.eyebrow),.lg-header p:not(.eyebrow),.bg-header p:not(.eyebrow){font-size:1rem;line-height:1.9;color:var(--muted);max-width:58ch;margin:0.4rem auto 0}
 .contact-inner .section-title{margin-bottom:2rem}
-.contact-item b{color:var(--gold-lt);font-weight:500}
+.contact-item b{color:var(--gold-deep);font-weight:500}
 </style>
 </head>
 <body>
