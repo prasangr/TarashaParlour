@@ -370,6 +370,13 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   font-size:var(--t-sm);color:var(--muted);padding:0.62rem 0;border-bottom:1px dotted rgba(217,203,214,0.16)}
 .pkg-list li:last-child{border-bottom:0}
 .pkg-list b{color:var(--ivory);font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pkg-list li.pkg-total{border-top:1px solid var(--line);border-bottom:0;margin-top:0.45rem;
+  padding-top:0.9rem;font-size:var(--t-base);color:var(--ivory);font-weight:500}
+.pkg-list li.pkg-total b{color:var(--muted);font-weight:500;text-decoration:line-through;
+  text-decoration-thickness:1px}
+.pkg-list li.pkg-payrow{border-bottom:0;padding-top:0.35rem;font-size:var(--t-md);
+  color:var(--gold);font-weight:500}
+.pkg-list li.pkg-payrow b{color:var(--gold-lt);font-size:var(--t-lg);font-weight:500}
 
 /* ══ RATE CARDS — the a-la-carte lists, same ledger, no package maths ══ */
 .rate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2.5rem 3rem;margin-top:4rem}
@@ -751,6 +758,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Clean-up</span><b>₹400</b></li>
           <li><span>Hand / leg wax</span><b>₹150</b></li>
           <li><span>Eyebrow, upper lip, forehead</span><b>₹70</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹820</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹599</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -768,6 +777,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Hands & legs, with under arms</span><b>₹250</b></li>
           <li><span>Haircut + hair wash</span><b>₹200</b></li>
           <li><span>Eyebrow, upper lip, forehead</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹1,250</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹999</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -785,6 +796,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Rica wax, half — hands, legs, under arms</span><b>₹600</b></li>
           <li><span>Hair wash + haircut</span><b>₹200</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹1,800</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹1,499</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -803,6 +816,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Hair spa</span><b>₹500</b></li>
           <li><span>Hair wash + haircut</span><b>₹200</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹2,850</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹2,499</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -821,6 +836,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Hair spa</span><b>₹600</b></li>
           <li><span>Hair wash + haircut</span><b>₹200</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹4,450</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹3,999</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -841,6 +858,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Manicure</span><b>₹600</b></li>
           <li><span>Pedicure</span><b>₹700</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹6,650</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹5,999</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -861,6 +880,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Pedicure</span><b>₹700</b></li>
           <li><span>Hair wash + haircut</span><b>₹200</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹7,750</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹6,999</b></li>
         </ul>
       </article>
       <article class="pkg">
@@ -882,6 +903,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
           <li><span>Hair spa</span><b>₹1,000</b></li>
           <li><span>Hair wash + haircut</span><b>₹200</b></li>
           <li><span>Face thread</span><b>₹100</b></li>
+          <li class="pkg-total"><span>Total</span><b>₹10,950</b></li>
+          <li class="pkg-payrow"><span>You pay</span><b>₹9,999</b></li>
         </ul>
       </article>
     </div>
