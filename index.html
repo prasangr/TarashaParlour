@@ -739,15 +739,15 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
         </div>
       </div>
     </div>
-    <div class="contact-form">
+    <form class="contact-form" id="bookForm" onsubmit="return sendBooking(event)">
       <h3>Book an Appointment</h3>
       <p class="form-sub">Fill in your details and we'll confirm your slot. Or WhatsApp us directly for faster booking!</p>
       <div class="form-grid">
-        <input class="inp" type="text" placeholder="Your Name">
-        <input class="inp" type="tel" placeholder="Phone Number">
+        <input class="inp" type="text" id="bkName" placeholder="Your Name" required>
+        <input class="inp" type="tel" id="bkPhone" placeholder="Phone Number" required pattern="[0-9+\- ]{10,15}" title="Enter a valid 10-digit phone number">
       </div>
       <div class="form-grid">
-        <select class="inp">
+        <select class="inp" id="bkService" required>
           <option value="" disabled selected>Select Service</option>
           <optgroup label="Hair Services"><option>Hair Cut</option><option>Chemical Treatment</option><option>Hair Spa</option><option>Rebonding</option><option>Smoothening</option><option>Nano Plastia</option><option>Botox</option><option>Hair Colour</option><option>Hairstyling</option><option>Saree Draping</option></optgroup>
           <optgroup label="Facials"><option>Herbal Facial</option><option>Fruit Facial</option><option>Gold Facial</option><option>Silver Facial</option><option>Pearl Facial</option><option>Oxygen Facial</option><option>Thermo Herb Facial</option><option>Clean-Up</option></optgroup>
@@ -757,13 +757,13 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
           <optgroup label="Makeup"><option>Simple Makeup</option><option>HD Makeup</option><option>Party Makeup</option><option>Garba Makeup</option><option>Sangeet Makeup</option><option>Engagement Look</option><option>Marriage Makeup</option><option>Reception Makeup</option></optgroup>
           <optgroup label="Bridal"><option>Full Bridal Package</option><option>Pre-Bridal Therapy</option><option>Lehenga Rental</option><option>Jewellery Rental</option></optgroup>
         </select>
-        <input class="inp" type="date">
+        <input class="inp" type="date" id="bkDate" required>
       </div>
       <div class="form-grid full">
-        <input class="inp" type="text" placeholder="Special requests (optional)">
+        <input class="inp" type="text" id="bkNotes" placeholder="Special requests (optional)">
       </div>
-      <button class="btn-submit" onclick="alert('Thank you! We will contact you shortly.\nWhatsApp: +91 96915 66637')">Confirm Appointment</button>
-    </div>
+      <button class="btn-submit" type="submit">Confirm Appointment on WhatsApp</button>
+    </form>
   </div>
 </section>
 
@@ -773,7 +773,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
     <strong>📍 Tarasha's Ladies Beauty Salon</strong>
     <p>L-280 A, Sector Sonagiri, BHEL, Bhopal – 462022, Madhya Pradesh</p>
   </div>
-  <a href="https://maps.google.com/?q=Sonagiri+BHEL+Bhopal+462022" target="_blank" class="btn-map">📍 Get Directions</a>
+  <a href="https://www.google.com/maps/place/Tarasha+beauty+salon+for+ladies/@23.252292,77.4731259,17z/data=!4m6!3m5!1s0x397c41f92a87c035:0xa844879bd5ed9ec7!8m2!3d23.252292!4d77.4731259!16s%2Fg%2F11fy2thj4s" target="_blank" class="btn-map">📍 Get Directions</a>
 </div>
 
 <!-- FOOTER -->
@@ -880,6 +880,38 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
     else if(e.key === 'ArrowLeft') prev();
   });
 })();
+</script>
+
+<script>
+// Booking form -> pre-filled WhatsApp message to the salon
+var SALON_WA = '919691566637';
+
+function bookingMessage(f){
+  var when = f.date ? new Date(f.date + 'T00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+  var lines = [
+    "Hi Tarasha's Salon! I would like to book an appointment.",
+    '',
+    'Name: ' + f.name,
+    'Phone: ' + f.phone,
+    'Service: ' + f.service,
+    'Preferred date: ' + when
+  ];
+  if (f.notes) lines.push('Notes: ' + f.notes);
+  return lines.join('\n');
+}
+
+function sendBooking(e){
+  e.preventDefault();
+  var v = function(id){ return (document.getElementById(id).value || '').trim(); };
+  var url = 'https://wa.me/' + SALON_WA + '?text=' + encodeURIComponent(bookingMessage({
+    name: v('bkName'), phone: v('bkPhone'), service: v('bkService'),
+    date: v('bkDate'), notes: v('bkNotes')
+  }));
+  if (!window.open(url, '_blank')) window.location.href = url;  // popup blocked -> same tab
+  return false;
+}
+
+document.getElementById('bkDate').min = new Date().toISOString().slice(0,10);  // no past dates
 </script>
 </body>
 </html>
