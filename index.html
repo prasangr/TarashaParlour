@@ -354,16 +354,22 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 .pkg{display:flex;flex-direction:column;background:var(--ink);padding:1.9rem 1.6rem 1.5rem;position:relative}
 .pkg::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.5s}
 .pkg:hover::before{width:100%}
-.pkg-no{display:block;font-size:var(--t-tag);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.pkg-price{font-family:'Bodoni Moda',Georgia,serif;font-size:2.6rem;line-height:1;color:var(--ivory);font-weight:400;margin:0.55rem 0 1.4rem}
-.pkg-list{list-style:none;flex:1;margin-bottom:1.4rem}
+.pkg-no{display:block;font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.pkg-payline{font-size:var(--t-sm);color:var(--muted);margin-top:1.1rem}
+.pkg-price{font-family:'Bodoni Moda',Georgia,serif;font-size:3rem;line-height:1;color:var(--ivory);
+  font-weight:500;margin:0.1rem 0 1rem;font-variant-numeric:tabular-nums}
+.pkg-compare{display:flex;flex-wrap:wrap;align-items:center;gap:0.55rem 0.8rem;margin-bottom:1.7rem}
+.pkg-was{font-size:var(--t-sm);color:var(--muted)}
+.pkg-was s{text-decoration-thickness:1px;text-underline-offset:2px}
+.pkg-save{font-size:var(--t-sm);font-weight:600;color:#FFB3DC;background:rgba(255,79,174,0.15);
+  border:1px solid rgba(255,79,174,0.42);border-radius:999px;padding:0.28rem 0.85rem;white-space:nowrap}
+.pkg-inc{font-size:var(--t-sm);color:var(--gold);font-weight:500;padding-bottom:0.5rem;
+  border-bottom:1px solid var(--line)}
+.pkg-list{list-style:none;flex:1;margin-top:0.2rem}
 .pkg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  font-size:var(--t-sm);color:var(--muted);padding:0.55rem 0;border-bottom:1px dotted rgba(217,203,214,0.16)}
+  font-size:var(--t-sm);color:var(--muted);padding:0.62rem 0;border-bottom:1px dotted rgba(217,203,214,0.16)}
 .pkg-list li:last-child{border-bottom:0}
-.pkg-list b{color:var(--ivory);font-weight:400;white-space:nowrap;font-variant-numeric:tabular-nums}
-.pkg-foot{border-top:1px solid var(--line);padding-top:1rem;display:flex;flex-direction:column;gap:0.3rem}
-.pkg-sep{font-size:var(--t-tag);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);opacity:0.85}
-.pkg-save{font-size:var(--t-base);color:var(--neon-soft);font-weight:500;letter-spacing:0.03em}
+.pkg-list b{color:var(--ivory);font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 /* ══ RATE CARDS — the a-la-carte lists, same ledger, no package maths ══ */
 .rate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2.5rem 3rem;margin-top:4rem}
@@ -381,18 +387,25 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
 .pricing-foot p{font-size:var(--t-base);color:var(--muted);max-width:56ch;line-height:1.75}
 @media(max-width:600px){
-  .pkg{padding:1.6rem 1.3rem 1.3rem}
-  .pkg-price{font-size:2.3rem}
+  .pkg{padding:1.7rem 1.35rem 1.4rem}
+  .pkg-price{font-size:2.7rem}
 }
 
-/* ══ FLOATING WHATSAPP — reachable from anywhere on the page ══ */
-.wa-float{position:fixed;right:clamp(1.1rem,2.6vw,2.2rem);bottom:clamp(1.1rem,2.6vw,2.2rem);z-index:180;
-  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:var(--wa);color:#fff;text-decoration:none;
-  box-shadow:0 0 0 7px rgba(18,128,63,0.16),0 12px 30px rgba(0,0,0,0.5);
-  transition:background 0.3s,transform 0.3s,box-shadow 0.3s}
-.wa-float svg{width:27px;height:27px;fill:currentColor}
-.wa-float:hover{background:var(--wa-hi);transform:translateY(-3px);box-shadow:0 0 0 11px rgba(18,128,63,0.26),0 16px 38px rgba(0,0,0,0.55)}
+/* ══ FLOATING BUTTONS — reachable from anywhere on the page ══ */
+.fab-stack{position:fixed;right:clamp(1.1rem,2.6vw,2.2rem);bottom:clamp(1.1rem,2.6vw,2.2rem);z-index:180;
+  display:flex;flex-direction:column;gap:0.9rem}
+.fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;transition:background 0.3s,color 0.3s,border-color 0.3s,transform 0.3s,box-shadow 0.3s}
+.fab svg{width:27px;height:27px}
+.fab:hover{transform:translateY(-3px)}
+.fab-wa{background:var(--wa);color:#fff;box-shadow:0 0 0 7px rgba(18,128,63,0.16),0 12px 30px rgba(0,0,0,0.5)}
+.fab-wa svg{fill:currentColor}
+.fab-wa:hover{background:var(--wa-hi);box-shadow:0 0 0 11px rgba(18,128,63,0.26),0 16px 38px rgba(0,0,0,0.55)}
+/* Instagram keeps this page's own ring vocabulary instead of the brand
+   gradient, whose yellow corner puts a white glyph at 1.5:1 */
+.fab-ig{background:var(--ink-3);color:#F0568E;border:1.5px solid #F0568E;
+  box-shadow:0 0 0 7px rgba(240,86,142,0.14),0 12px 30px rgba(0,0,0,0.5)}
+.fab-ig:hover{color:#FFB3DC;border-color:#FFB3DC;box-shadow:0 0 0 11px rgba(240,86,142,0.24),0 16px 38px rgba(0,0,0,0.55)}
 
 /* ══ REVEAL ══ */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.8s cubic-bezier(.2,.7,.3,1),transform 0.8s cubic-bezier(.2,.7,.3,1)}
@@ -444,7 +457,8 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .lb-prev{left:0.4rem}.lb-next{right:0.4rem}
   .lb-close{top:-3rem;width:34px;height:34px}
   .mobile-bar{display:flex}
-  .wa-float{display:none}  /* the sticky bar already carries WhatsApp here */
+  .fab-wa{display:none}  /* the sticky bar already carries WhatsApp here */
+  .fab-stack{bottom:calc(5rem + env(safe-area-inset-bottom))}  /* clear that bar */
   body{padding-bottom:4.6rem}
   .bridal-watermark{right:-40%;opacity:0.04}
 }
@@ -725,134 +739,150 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
     <div class="pkg-grid">
       <article class="pkg">
         <span class="pkg-no">Package 1</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹599</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹820</s></span>
+          <span class="pkg-save">Save ₹221</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Clean-up</span><b>₹400</b></li>
-        <li><span>Hand / leg wax</span><b>₹150</b></li>
-        <li><span>Eyebrow, upper lip, forehead</span><b>₹70</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Clean-up</span><b>₹400</b></li>
+          <li><span>Hand / leg wax</span><b>₹150</b></li>
+          <li><span>Eyebrow, upper lip, forehead</span><b>₹70</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹820 booked separately</span>
-          <span class="pkg-save">You save ₹221</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 2</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹999</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹1,250</s></span>
+          <span class="pkg-save">Save ₹251</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Facial</span><b>₹500</b></li>
-        <li><span>Hands & legs, with under arms</span><b>₹250</b></li>
-        <li><span>Haircut + hair wash</span><b>₹200</b></li>
-        <li><span>Eyebrow, upper lip, forehead</span><b>₹100</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Facial</span><b>₹500</b></li>
+          <li><span>Hands & legs, with under arms</span><b>₹250</b></li>
+          <li><span>Haircut + hair wash</span><b>₹200</b></li>
+          <li><span>Eyebrow, upper lip, forehead</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹1,250 booked separately</span>
-          <span class="pkg-save">You save ₹251</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 3</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹1,499</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹1,800</s></span>
+          <span class="pkg-save">Save ₹301</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Facial</span><b>₹700</b></li>
-        <li><span>Rica wax, half — hands, legs, under arms</span><b>₹600</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Facial</span><b>₹700</b></li>
+          <li><span>Rica wax, half — hands, legs, under arms</span><b>₹600</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹1,800 booked separately</span>
-          <span class="pkg-save">You save ₹301</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 4</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹2,499</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹2,850</s></span>
+          <span class="pkg-save">Save ₹351</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Facial</span><b>₹1,000</b></li>
-        <li><span>Full hands & legs wax</span><b>₹850</b></li>
-        <li><span>Hair spa</span><b>₹500</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Facial</span><b>₹1,000</b></li>
+          <li><span>Full hands & legs wax</span><b>₹850</b></li>
+          <li><span>Hair spa</span><b>₹500</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹2,850 booked separately</span>
-          <span class="pkg-save">You save ₹351</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 5</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹3,999</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹4,450</s></span>
+          <span class="pkg-save">Save ₹451</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Facial</span><b>₹1,500</b></li>
-        <li><span>Full body wax</span><b>₹1,850</b></li>
-        <li><span>Hair spa</span><b>₹600</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Facial</span><b>₹1,500</b></li>
+          <li><span>Full body wax</span><b>₹1,850</b></li>
+          <li><span>Hair spa</span><b>₹600</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹4,450 booked separately</span>
-          <span class="pkg-save">You save ₹451</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 6</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹5,999</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹6,650</s></span>
+          <span class="pkg-save">Save ₹651</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>De-tan / bleach</span><b>₹200</b></li>
-        <li><span>Facial</span><b>₹1,500</b></li>
-        <li><span>Full body wax</span><b>₹1,850</b></li>
-        <li><span>Body bleach</span><b>₹1,500</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Manicure</span><b>₹600</b></li>
-        <li><span>Pedicure</span><b>₹700</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>De-tan / bleach</span><b>₹200</b></li>
+          <li><span>Facial</span><b>₹1,500</b></li>
+          <li><span>Full body wax</span><b>₹1,850</b></li>
+          <li><span>Body bleach</span><b>₹1,500</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Manicure</span><b>₹600</b></li>
+          <li><span>Pedicure</span><b>₹700</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹6,650 booked separately</span>
-          <span class="pkg-save">You save ₹651</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 7</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹6,999</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹7,750</s></span>
+          <span class="pkg-save">Save ₹751</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>Facial</span><b>₹2,000</b></li>
-        <li><span>Full body wax</span><b>₹1,850</b></li>
-        <li><span>Body bleach</span><b>₹1,500</b></li>
-        <li><span>Hair spa</span><b>₹800</b></li>
-        <li><span>Manicure</span><b>₹600</b></li>
-        <li><span>Pedicure</span><b>₹700</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>Facial</span><b>₹2,000</b></li>
+          <li><span>Full body wax</span><b>₹1,850</b></li>
+          <li><span>Body bleach</span><b>₹1,500</b></li>
+          <li><span>Hair spa</span><b>₹800</b></li>
+          <li><span>Manicure</span><b>₹600</b></li>
+          <li><span>Pedicure</span><b>₹700</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹7,750 booked separately</span>
-          <span class="pkg-save">You save ₹751</span>
-        </div>
       </article>
       <article class="pkg">
         <span class="pkg-no">Package 8</span>
+        <p class="pkg-payline">You pay</p>
         <p class="pkg-price">₹9,999</p>
+        <p class="pkg-compare">
+          <span class="pkg-was">Worth <s>₹10,950</s></span>
+          <span class="pkg-save">Save ₹951</span>
+        </p>
+        <p class="pkg-inc">What you get</p>
         <ul class="pkg-list">
-        <li><span>Facial (1–2 sittings)</span><b>₹2,500</b></li>
-        <li><span>Body polishing</span><b>₹2,500</b></li>
-        <li><span>Body bleach</span><b>₹1,500</b></li>
-        <li><span>Body wax</span><b>₹1,850</b></li>
-        <li><span>Manicure</span><b>₹600</b></li>
-        <li><span>Pedicure</span><b>₹700</b></li>
-        <li><span>Hair spa</span><b>₹1,000</b></li>
-        <li><span>Hair wash + haircut</span><b>₹200</b></li>
-        <li><span>Face thread</span><b>₹100</b></li>
+          <li><span>Facial (1–2 sittings)</span><b>₹2,500</b></li>
+          <li><span>Body polishing</span><b>₹2,500</b></li>
+          <li><span>Body bleach</span><b>₹1,500</b></li>
+          <li><span>Body wax</span><b>₹1,850</b></li>
+          <li><span>Manicure</span><b>₹600</b></li>
+          <li><span>Pedicure</span><b>₹700</b></li>
+          <li><span>Hair spa</span><b>₹1,000</b></li>
+          <li><span>Hair wash + haircut</span><b>₹200</b></li>
+          <li><span>Face thread</span><b>₹100</b></li>
         </ul>
-        <div class="pkg-foot">
-          <span class="pkg-sep">₹10,950 booked separately</span>
-          <span class="pkg-save">You save ₹951</span>
-        </div>
       </article>
     </div>
 
@@ -1280,8 +1310,12 @@ bkDate.min = new Date().toISOString().slice(0,10);  // no past dates
 bkDate.addEventListener('focus', function(){ this.type = 'date'; });
 bkDate.addEventListener('blur', function(){ if(!this.value) this.type = 'text'; });
 </script>
-<a class="wa-float" href="https://wa.me/919691566637" target="_blank" rel="noopener"
-   aria-label="Chat with Tarasha's on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+<div class="fab-stack">
+  <a class="fab fab-ig" href="https://www.instagram.com/makeupandhairbyjaya" target="_blank" rel="noopener"
+     aria-label="See our makeup and hair work on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
+  <a class="fab fab-wa" href="https://wa.me/919691566637" target="_blank" rel="noopener"
+     aria-label="Chat with Tarasha's on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+</div>
 
 <div class="mobile-bar">
   <a class="mb-call" href="tel:+919691566637">Call</a>

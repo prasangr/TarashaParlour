@@ -34,6 +34,9 @@ pairs += [
     ('white on wa-hi (hover)',       '#FFFFFF', t['wa-hi']),
     # footer fine print is the one place we dim the body colour
     ('footer fine print (muted @72%)', over(t['muted'], t['ink'], 0.72), t['ink']),
+    # the savings chip: pink type on a translucent magenta pill over the ground
+    ('savings chip text', '#FFB3DC', over(t['neon'], t['ink'], 0.15)),
+    ('savings chip text on band', '#FFB3DC', over(t['neon'], t['ink-2'], 0.15)),
 ]
 
 failures = []
