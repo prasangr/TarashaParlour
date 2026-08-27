@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = ""
+
+# Asset filenames are content hashes — safe to cache forever.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
