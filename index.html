@@ -4,340 +4,410 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarasha's Ladies Beauty Salon — Bhopal</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Jost:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0D0811;--bg2:#150E1C;--bg3:#1C1228;--card:#1E1430;
-  --purple:#9B59D0;--purple-mid:#7B3FAF;--purple-bright:#BF7FFF;
-  --gold:#D4A843;--gold-light:#ECC96A;--cream:#F5EFE8;
-  --text:#E8DFF5;--text-muted:#9B88B5;--border:rgba(155,89,208,0.18);
+  /* Ground: the warm dark the neon sign lives in */
+  --ink:#0A0510; --ink-2:#140A1B; --ink-3:#1D0F26;
+  /* Gold: lifted from the logo ring */
+  --gold:#C9A44C; --gold-lt:#E8CE8B;
+  /* Neon: the actual magenta of the salon's sign */
+  --neon:#FF2FA0; --neon-soft:#FF7BC4;
+  /* Ivory: the plaster wall behind the logo */
+  --ivory:#F4EBE2; --muted:#B6A2BC;
+  --line:rgba(201,164,76,0.20);
+  --line-soft:rgba(244,235,226,0.09);
+  --shell:min(1240px,100%);
+  --pad:clamp(1.25rem,5vw,4.5rem);
 }
-html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--purple-mid);border-radius:3px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',system-ui,sans-serif;font-weight:300;background:var(--ink);color:var(--muted);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+::selection{background:var(--neon);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--ink-2)}
+::-webkit-scrollbar-thumb{background:rgba(201,164,76,0.35)}
+:focus-visible{outline:2px solid var(--gold-lt);outline-offset:3px;border-radius:2px}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;width:100%;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0.7rem 3rem;background:rgba(13,8,17,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.nav-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
-.nav-logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(212,168,67,0.5)}
-.nav-brand-text{display:flex;flex-direction:column;line-height:1.1}
-.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:0.02em}
-.nav-brand-sub{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
-.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.74rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
-.nav-links a:hover{color:var(--purple-bright)}
-.btn-nav{background:var(--purple-mid)!important;color:white!important;padding:0.45rem 1.2rem;border-radius:30px;transition:background 0.3s!important}
-.btn-nav:hover{background:var(--purple)!important}
+/* ══ TYPE SYSTEM ══ */
+.display,h1,h2,.cat-title,.stat-num,.contact-form h3{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;color:var(--ivory);letter-spacing:-0.005em}
+.script{font-family:'Sacramento',cursive;font-weight:400;letter-spacing:0.01em}
+.eyebrow{display:block;font-size:0.68rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.eyebrow::after{content:'';display:block;width:34px;height:1px;background:var(--gold);margin-top:0.9rem;opacity:0.55}
+.center .eyebrow::after{margin-left:auto;margin-right:auto}
+.section-title{font-size:clamp(2rem,3.5vw,3.05rem);line-height:1.08}
+.section-title em{font-style:italic;color:var(--gold-lt)}
+.lede{font-size:1rem;line-height:1.9;max-width:52ch}
+.center{text-align:center}
+.center .lede{margin-inline:auto}
+.shell{width:var(--shell);margin-inline:auto}
+section{padding:clamp(4rem,8vw,7rem) var(--pad)}
+.band{background:var(--ink-2)}
 
-/* ── HERO ── */
-.hero{min-height:100vh;padding-top:68px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(155,89,208,0.07) 0%,transparent 60%);pointer-events:none}
-.hero-left{padding:4rem 3rem 4rem 4.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
-.tag-pill{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(155,89,208,0.14);border:1px solid rgba(155,89,208,0.28);border-radius:30px;padding:0.38rem 1rem;font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple-bright);font-weight:600;margin-bottom:1.6rem;width:fit-content}
-.tag-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,4.4rem);font-weight:700;line-height:1.09;color:var(--text);margin-bottom:0.4rem}
-.hero h1 em{font-style:italic;color:var(--purple-bright);font-weight:600}
-.salon-name-hero{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,1.8vw,1.75rem);color:var(--gold);font-weight:600;font-style:italic;margin-bottom:0.5rem;letter-spacing:0.05em}
-.complete-zone{font-size:0.68rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.6rem;font-weight:500;opacity:0.75}
-.hero-desc{font-size:0.86rem;color:var(--text-muted);line-height:1.9;max-width:390px;margin-bottom:2rem;font-weight:300}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.8rem}
-.btn-primary{background:linear-gradient(135deg,var(--purple-mid),#4A1580);color:white;text-decoration:none;font-size:0.72rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;padding:0.8rem 1.8rem;border-radius:30px;box-shadow:0 4px 22px rgba(123,63,175,0.48);transition:transform 0.25s,box-shadow 0.25s;display:inline-block;border:1px solid rgba(155,89,208,0.35)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(123,63,175,0.62)}
-.btn-wa{display:inline-flex;align-items:center;gap:0.45rem;background:#25D366;color:white;text-decoration:none;font-size:0.72rem;font-weight:700;padding:0.8rem 1.4rem;border-radius:30px;transition:transform 0.25s,background 0.3s}
-.btn-wa:hover{transform:translateY(-2px);background:#1ebe5a}
-.btn-wa svg{width:15px;height:15px;fill:white}
-.hours-badge{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(212,168,67,0.09);border:1px solid rgba(212,168,67,0.22);border-radius:10px;padding:0.55rem 0.95rem;font-size:0.76rem;color:var(--gold-light);font-weight:500}
-.hours-badge span{font-weight:700;color:var(--gold)}
+/* ══ MEDALLION RULE — the mehendi motif from the salon's own photo ══ */
+.medallion{width:38px;height:38px;color:var(--gold);flex-shrink:0}
+.rule{display:flex;align-items:center;gap:1.4rem;width:var(--shell);margin:0 auto;padding:0 var(--pad)}
+.rule::before,.rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+.rule::after{background:linear-gradient(90deg,var(--line),transparent)}
+.rule-wrap{padding:clamp(2rem,4vw,3rem) 0 0;background:var(--ink)}
 
-/* ── HERO RIGHT — logo + neon aligned ── */
-.hero-right{position:relative;overflow:hidden;background:#05020a;display:flex;flex-direction:column}
-.hero-logo-band{
-  flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  padding:1.8rem 2rem;
-  background:rgba(13,8,17,0.7);
-  border-bottom:1px solid rgba(212,168,67,0.2);
-  gap:1.5rem;
-  position:relative;z-index:2;
-}
-.hero-logo-circle{
-  width:90px;height:90px;border-radius:50%;
-  overflow:hidden;
-  border:2px solid rgba(212,168,67,0.6);
-  box-shadow:0 0 24px rgba(212,168,67,0.2);
-  flex-shrink:0;
-}
-.hero-logo-circle img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-logo-text h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);font-weight:700;line-height:1.1}
-.hero-logo-text h2 em{font-style:italic;color:var(--gold)}
-.hero-logo-text p{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-light);margin-top:0.3rem;opacity:0.8}
-.hero-neon-photo{flex:1;position:relative;min-height:0}
-.hero-neon-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;opacity:0.85}
-.hero-neon-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,8,17,0.4) 0%,transparent 30%),linear-gradient(to bottom,rgba(13,8,17,0.2) 0%,rgba(13,8,17,0.6) 100%)}
-.hero-float-badge{position:absolute;bottom:1.8rem;right:1.8rem;background:rgba(21,14,28,0.92);backdrop-filter:blur(12px);border:1px solid rgba(155,89,208,0.3);border-radius:12px;padding:0.85rem 1.2rem;text-align:center}
-.hero-float-badge .hf-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--purple-bright);line-height:1;font-weight:700}
-.hero-float-badge .hf-lbl{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
+/* ══ NAV ══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem var(--pad);transition:background 0.4s,padding 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
+nav.stuck{background:rgba(10,5,16,0.92);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.55)}
+.nav-brand-text{display:flex;flex-direction:column;line-height:1}
+.nav-brand-name{font-family:'Sacramento',cursive;font-size:1.6rem;color:var(--ivory);line-height:0.95}
+.nav-brand-sub{font-size:0.55rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:0.15rem}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.74rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color 0.3s;position:relative;padding:0.3rem 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width 0.35s}
+.nav-links a:hover{color:var(--ivory)}
+.nav-links a:hover::after{width:100%}
+.btn-nav{border:1px solid var(--gold);color:var(--gold-lt)!important;padding:0.5rem 1.15rem;border-radius:999px;transition:background 0.35s,color 0.35s}
+.btn-nav::after{display:none!important}
+.btn-nav:hover{background:var(--gold);color:var(--ink)!important}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:0.5rem;color:var(--ivory)}
+.nav-toggle span{display:block;width:24px;height:1px;background:currentColor;margin:5px 0;transition:transform 0.35s,opacity 0.25s}
+nav.open .nav-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+nav.open .nav-toggle span:nth-child(2){opacity:0}
+nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-/* ── MARQUEE ── */
-.marquee-wrap{background:var(--bg2);padding:0.8rem 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.marquee-track{display:inline-flex;gap:0;white-space:nowrap;animation:marquee 36s linear infinite}
-.marquee-item{font-size:0.63rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);padding:0 1.8rem;display:inline-flex;align-items:center;gap:1.8rem}
-.marquee-gem{color:var(--gold);font-size:0.52rem}
+/* ══ HERO — opens on the salon's own neon sign ══ */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;padding:0;overflow:hidden;background:var(--ink)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:62% 42%;animation:slowZoom 14s ease-out forwards}
+@keyframes slowZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-scrim{position:absolute;inset:0;background:
+  linear-gradient(100deg,var(--ink) 0%,rgba(10,5,16,0.95) 34%,rgba(10,5,16,0.6) 58%,rgba(10,5,16,0.45) 100%),
+  linear-gradient(to top,var(--ink) 2%,transparent 34%),
+  linear-gradient(rgba(10,5,16,0.3),rgba(10,5,16,0.3))}
+.hero-inner{position:relative;z-index:2;padding:8rem var(--pad) 5rem;grid-column:1}
+.hero-emblem{display:flex;align-items:center;gap:0.9rem;margin-bottom:2rem}
+.hero-emblem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.5)}
+.hero-emblem div{font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);line-height:1.9}
+.hero-emblem span{display:block;color:var(--muted);opacity:0.75}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.9rem);line-height:1.03;margin-bottom:1.4rem;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--gold-lt)}
+/* the salon's own script, echoing the sign — the real neon stays in the photograph */
+.script-name{font-family:'Sacramento',cursive;font-size:clamp(2.1rem,3.4vw,3rem);color:var(--gold-lt);line-height:1;display:inline-block}
+.hero-zone{font-size:0.66rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin:0.6rem 0 1.5rem;font-weight:500}
+.hero-desc{font-size:1rem;line-height:1.9;max-width:44ch;margin-bottom:2.2rem;color:var(--muted)}
+.hero-ctas{display:flex;gap:0.9rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
+/* magenta means the sign is lit: the salon is open */
+.hero-hours{display:inline-flex;align-items:center;gap:0.75rem;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:1.1rem}
+.hero-hours::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon),0 0 16px rgba(255,47,160,0.7);animation:lit 3.4s ease-in-out infinite}
+@keyframes lit{0%,100%{opacity:1}50%{opacity:0.55}}
+.hero-hours b{color:var(--gold-lt);font-weight:500;letter-spacing:0.1em}
+.hero-badge{position:absolute;right:var(--pad);bottom:3.5rem;z-index:2;text-align:right;border-right:1px solid var(--line);padding-right:1.2rem}
+.hero-badge .hf-num{font-family:'Bodoni Moda',serif;font-size:2.6rem;color:var(--ivory);line-height:1;font-weight:400}
+.hero-badge .hf-lbl{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-top:0.35rem}
+
+/* ══ BUTTONS ══ */
+.btn-primary{background:var(--gold);color:var(--ink);text-decoration:none;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  padding:0.95rem 2rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s;display:inline-block;border:1px solid var(--gold)}
+.btn-primary:hover{background:var(--gold-lt);border-color:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,164,76,0.22)}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;background:transparent;border:1px solid var(--line-soft);color:var(--ivory);text-decoration:none;
+  font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;padding:0.95rem 1.7rem;border-radius:999px;transition:border-color 0.3s,background 0.3s}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,164,76,0.07)}
+.btn-wa{display:inline-flex;align-items:center;gap:0.55rem;background:#1FA855;color:#fff;text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;
+  padding:0.95rem 1.6rem;border-radius:999px;transition:background 0.3s,transform 0.3s}
+.btn-wa:hover{background:#25D366;transform:translateY(-2px)}
+.btn-wa svg{width:16px;height:16px;fill:currentColor}
+.btn-gold{display:inline-block;text-decoration:none;background:var(--gold);color:var(--ink);font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  padding:0.95rem 2rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,164,76,0.24)}
+
+/* ══ MARQUEE ══ */
+.marquee-wrap{background:var(--ink-2);padding:1.05rem 0;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:inline-flex;white-space:nowrap;animation:marquee 62s linear infinite}
+.marquee-item{font-size:0.68rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);padding:0 1.6rem;display:inline-flex;align-items:center;gap:1.6rem;font-weight:400}
+.marquee-gem{color:var(--gold);font-size:0.5rem;opacity:0.8}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── SECTION COMMONS ── */
-.section-label{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.64rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.8rem}
-.section-label::before,.section-label::after{content:'';width:20px;height:1px;background:var(--gold)}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.75rem);font-weight:700;color:var(--text)}
-.section-title em{font-style:italic;color:var(--purple-bright);font-weight:600}
+/* ══ LANDING GALLERY ══ */
+.landing-gallery-section{background:var(--ink)}
 
-/* ── PHOTO STRIP — single photo + logo ── */
-.photo-banner{
-  display:grid;grid-template-columns:1fr;
-  height:580px;
-  gap:3px;background:var(--bg);
-}
-.pb-main{overflow:hidden;position:relative}
-.pb-main img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(0.8) saturate(1.1);transition:filter 0.4s,transform 0.5s}
-.pb-main:hover img{filter:brightness(0.95) saturate(1.2);transform:scale(1.03)}
-.pb-main-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,8,17,0.7) 0%,transparent 50%)}
-.pb-main-label{position:absolute;bottom:1.5rem;left:2rem}
-.pb-main-label h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:0.2rem}
-.pb-main-label p{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light);opacity:0.85}
-.pb-logo{display:none!important;}
-.pb-logo-img{
-  width:160px;height:160px;border-radius:50%;
-  overflow:hidden;
-  border:2px solid rgba(212,168,67,0.5);
-  box-shadow:0 0 30px rgba(212,168,67,0.15);
-}
-.pb-logo-img img{width:100%;height:100%;object-fit:cover;display:block}
-.pb-logo-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-style:italic;font-weight:600;text-align:center;letter-spacing:0.04em}
-.pb-logo-zone{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);text-align:center}
-
-/* ── SERVICES ── */
-.services{padding:6rem 4rem;background:var(--bg)}
-.services-header{text-align:center;margin-bottom:4rem}
-.services-intro{font-size:0.85rem;color:var(--text-muted);max-width:500px;margin:0.8rem auto 0;line-height:1.8;font-weight:300}
-.service-categories{display:flex;flex-direction:column;gap:3rem;max-width:1200px;margin:0 auto}
-.cat-block{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem 2.4rem}
-.cat-header{display:flex;align-items:center;gap:1rem;margin-bottom:0.4rem}
-.cat-emoji{width:40px;height:40px;background:rgba(155,89,208,0.14);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
-.cat-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text)}
-.cat-subtitle{font-size:0.76rem;color:var(--text-muted);margin-bottom:1.3rem;margin-left:3.2rem;font-weight:300}
-.services-pills{display:flex;flex-wrap:wrap;gap:0.55rem}
-.pill{background:rgba(155,89,208,0.09);border:1px solid rgba(155,89,208,0.2);color:var(--text);font-size:0.79rem;font-weight:500;padding:0.45rem 0.95rem;border-radius:25px;transition:all 0.25s;cursor:default}
-.pill:hover{background:var(--purple-mid);color:white;border-color:var(--purple-mid);transform:translateY(-2px)}
-.pill.special{background:rgba(123,63,175,0.25);border-color:rgba(155,89,208,0.45);color:var(--purple-bright);font-weight:700}
-.pill.special:hover{background:var(--purple-mid);color:white;transform:translateY(-2px)}
-.pill.gold{background:rgba(212,168,67,0.1);border-color:rgba(212,168,67,0.28);color:var(--gold-light);font-weight:600}
-.pill.gold:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-
-/* ── ABOUT / TEAM ── */
-.about{background:var(--bg2);padding:6rem 4rem}
-.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.about-photo-main{border-radius:20px;overflow:hidden;position:relative;box-shadow:0 16px 60px rgba(0,0,0,0.5)}
-.about-photo-main img{width:100%;height:500px;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s}
-.about-photo-main:hover img{transform:scale(1.03)}
-.about-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(5,2,10,0.88))}
-.about-photo-overlay p{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--gold-light);font-style:italic}
-.about-text .section-label{justify-content:flex-start}
-.about-text p{font-size:0.87rem;color:var(--text-muted);line-height:1.9;margin:1rem 0;font-weight:300;max-width:480px}
-.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin-top:1.8rem}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1.1rem;text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--purple-bright);font-weight:700;line-height:1}
-.stat-label{font-size:0.63rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem}
-
-/* ── BRIDAL ── */
-.bridal{background:var(--bg3);padding:6rem 4rem;position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.bridal::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(123,63,175,0.09) 0%,transparent 70%);pointer-events:none}
-.bridal-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.bridal-tagline{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--gold-light);margin:1rem 0 1.5rem;opacity:0.85;letter-spacing:0.04em}
-.bridal-desc{font-size:0.86rem;color:var(--text-muted);line-height:1.9;margin-bottom:2rem;font-weight:300}
-.bridal-cards{display:flex;flex-direction:column;gap:0.8rem}
-.bridal-card{background:rgba(255,255,255,0.04);border:1px solid rgba(155,89,208,0.18);border-radius:13px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:all 0.3s}
-.bridal-card:hover{background:rgba(155,89,208,0.1);border-color:rgba(155,89,208,0.38);transform:translateX(4px)}
-.bridal-card-icon{width:40px;height:40px;flex-shrink:0;background:rgba(155,89,208,0.14);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.bridal-card h4{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--text);margin-bottom:0.15rem;font-weight:600}
-.bridal-card p{font-size:0.74rem;color:var(--text-muted);font-weight:300}
-.btn-gold{display:inline-block;text-decoration:none;background:linear-gradient(135deg,var(--gold),#B8922A);color:var(--bg);font-size:0.72rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:0.85rem 1.9rem;border-radius:30px;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 4px 20px rgba(212,168,67,0.28)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,168,67,0.42)}
-
-/* ── MAKEUP ── */
-.makeup{background:var(--bg);padding:6rem 4rem}
-.makeup-inner{max-width:1200px;margin:0 auto}
-.makeup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
-.makeup-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
-.makeup-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple-mid),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
-.makeup-card:hover::before{transform:scaleX(1)}
-.makeup-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3);border-color:rgba(155,89,208,0.32)}
-.makeup-icon{font-size:1.7rem;margin-bottom:0.75rem;display:block}
-.makeup-card h4{font-family:'Playfair Display',serif;font-size:0.92rem;color:var(--text);margin-bottom:0.35rem;font-weight:600}
-.makeup-card p{font-size:0.73rem;color:var(--text-muted);line-height:1.6;font-weight:300}
-
-/* ── WHY ── */
-.why{background:var(--bg2);padding:6rem 4rem}
-.why-inner{max-width:1200px;margin:0 auto}
-.why-header{text-align:center;margin-bottom:3.5rem}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
-.why-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem 1.4rem;text-align:center;transition:all 0.3s}
-.why-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(0,0,0,0.4);border-color:rgba(155,89,208,0.32)}
-.why-icon{width:52px;height:52px;margin:0 auto 0.9rem;background:rgba(155,89,208,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
-.why-card h4{font-family:'Playfair Display',serif;font-size:0.96rem;color:var(--text);margin-bottom:0.35rem;font-weight:600}
-.why-card p{font-size:0.74rem;color:var(--text-muted);line-height:1.7;font-weight:300}
-
-/* ── CONTACT ── */
-.contact{padding:6rem 4rem;background:var(--bg)}
-.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-.contact-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.7rem}
-.contact-icon{width:40px;height:40px;flex-shrink:0;background:rgba(155,89,208,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--purple-bright)}
-.contact-icon svg{width:18px;height:18px;stroke:currentColor;fill:none}
-.contact-item h4{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;font-weight:600}
-.contact-item p,.contact-item a{font-size:0.88rem;color:var(--text);font-weight:500;text-decoration:none;line-height:1.6}
-.contact-item a:hover{color:var(--purple-bright)}
-.contact-form h3{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--text);margin-bottom:0.4rem;font-weight:700}
-.form-sub{font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:0.8rem}
-.form-grid.full{grid-template-columns:1fr}
-.inp{padding:0.78rem 1rem;border:1px solid rgba(155,89,208,0.22);border-radius:10px;background:var(--card);font-family:'Nunito',sans-serif;font-size:0.84rem;color:var(--text);outline:none;transition:border-color 0.3s;width:100%}
-.inp:focus{border-color:var(--purple-mid)}
-.inp::placeholder{color:var(--text-muted)}
-select.inp{cursor:pointer}
-select.inp option{background:var(--bg3);color:var(--text)}
-.btn-submit{width:100%;background:linear-gradient(135deg,var(--purple-mid),#4A1580);color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.77rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.95rem;border-radius:10px;transition:opacity 0.3s,transform 0.25s;box-shadow:0 4px 22px rgba(123,63,175,0.38);margin-top:0.4rem;border:1px solid rgba(155,89,208,0.28)}
-.btn-submit:hover{opacity:0.9;transform:translateY(-1px)}
-
-/* ── MAP ── */
-.map-strip{background:var(--bg2);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-top:1px solid var(--border)}
-.map-strip p{color:var(--text-muted);font-size:0.83rem;max-width:500px;line-height:1.6}
-.map-strip strong{color:var(--text);display:block;font-size:0.93rem;margin-bottom:0.3rem}
-.btn-map{display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,var(--gold),#B8922A);color:var(--bg);text-decoration:none;font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0.72rem 1.5rem;border-radius:30px;transition:all 0.3s;white-space:nowrap}
-.btn-map:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,168,67,0.32)}
-
-/* ── FOOTER ── */
-footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;border-top:1px solid var(--border)}
-.footer-top{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.8rem}
-.footer-logo-img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(212,168,67,0.45)}
-.footer-brand{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--text);font-weight:700}
-.footer-brand span{color:var(--gold);font-style:italic}
-.footer-tagline{font-size:0.77rem;color:var(--text-muted);font-style:italic;margin-bottom:0.4rem}
-.footer-zone{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple-bright);margin-bottom:1.1rem;opacity:0.65}
-.footer-contact-quick{font-size:0.79rem;color:var(--text-muted);line-height:2.1}
-.footer-contact-quick a{color:var(--purple-bright);text-decoration:none}
-.footer-col h4{font-size:0.63rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:0.6rem}
-.footer-col a{font-size:0.79rem;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-weight:300}
-.footer-col a:hover{color:var(--purple-bright)}
-.footer-bottom{background:var(--bg);padding:1.1rem 4rem;border-top:1px solid var(--border);text-align:center}
-.footer-bottom p{font-size:0.7rem;color:rgba(155,136,181,0.3)}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-.anim{opacity:0;animation:fadeUp 0.9s ease forwards}
-.d1{animation-delay:0.1s}.d2{animation-delay:0.25s}.d3{animation-delay:0.4s}.d4{animation-delay:0.55s}.d5{animation-delay:0.7s}
-
-
-/* ── LANDING GALLERY (replaces photo-banner) ── */
-.landing-gallery-section{padding:5rem 4rem 4rem;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);position:relative;overflow:hidden}
-.landing-gallery-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,0.35),transparent)}
-.lg-header{text-align:center;margin-bottom:3rem;max-width:700px;margin-left:auto;margin-right:auto}
-.lg-header .section-label{justify-content:center;display:inline-flex}
-.lg-header .section-title{margin-bottom:0.9rem}
-.lg-header p{font-size:0.88rem;color:var(--text-muted);line-height:1.8;font-weight:300;margin-top:0.5rem}
-.lg-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:240px 240px;gap:14px;max-width:1300px;margin:0 auto}
-.lg-item{position:relative;overflow:hidden;border-radius:6px;cursor:pointer;background:#0a0610;border:1px solid rgba(212,168,67,0.12);transition:border-color 0.4s,transform 0.4s}
-.lg-item:hover{border-color:rgba(212,168,67,0.5);transform:translateY(-3px)}
-.lg-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.88) saturate(1.08);transition:filter 0.5s,transform 0.7s}
-.lg-item:hover img{filter:brightness(1.02) saturate(1.15);transform:scale(1.07)}
-.lg-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,8,17,0.55) 0%,transparent 55%);pointer-events:none;opacity:0.85;transition:opacity 0.4s}
-.lg-item:hover .lg-item-overlay{opacity:0.45}
-.lg-item-caption{position:absolute;bottom:0.85rem;left:1rem;right:1rem;z-index:2;pointer-events:none}
-.lg-item-caption h4{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--text);font-weight:600;letter-spacing:0.01em}
-.lg-item-caption p{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light);opacity:0.85;margin-top:0.15rem}
+.lg-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:250px 250px;gap:12px;width:var(--shell);margin:0 auto}
+.lg-item{position:relative;overflow:hidden;cursor:pointer;background:#0a0610;border-radius:3px}
+.lg-item::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.4s;pointer-events:none;z-index:3;border-radius:3px}
+.lg-item:hover::after{border-color:rgba(201,164,76,0.55)}
+.lg-item img{width:100%;height:100%;object-fit:cover;filter:brightness(0.82) saturate(1.05);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
+.lg-item:hover img{filter:brightness(1) saturate(1.12);transform:scale(1.05)}
+.lg-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,16,0.85) 0%,rgba(10,5,16,0.1) 55%);pointer-events:none;z-index:2}
+.lg-item-caption{position:absolute;bottom:1.1rem;left:1.2rem;right:1.2rem;z-index:3;pointer-events:none}
+.lg-item-caption h4{font-family:'Bodoni Moda',serif;font-size:1.05rem;font-weight:500;color:var(--ivory);font-style:italic}
+.lg-item-caption p{font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;font-weight:500}
 .lg-item.lg-feature{grid-row:span 2}
-.lg-item.lg-feature .lg-item-caption h4{font-size:1.15rem}
-.lg-cta-wrap{text-align:center;margin-top:2.5rem}
-.lg-cta{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;border:1px solid rgba(212,168,67,0.45);color:var(--gold-light);text-decoration:none;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:0.75rem 1.6rem;border-radius:30px;transition:background 0.3s,color 0.3s,border-color 0.3s}
-.lg-cta:hover{background:rgba(212,168,67,0.08);color:var(--gold);border-color:var(--gold)}
-.lg-cta::after{content:'→';transition:transform 0.3s}
-.lg-cta:hover::after{transform:translateX(4px)}
+.lg-item.lg-feature .lg-item-caption h4{font-size:1.5rem}
+.lg-cta-wrap{text-align:center;margin-top:2.8rem}
+.lg-cta{display:inline-flex;align-items:center;gap:0.7rem;color:var(--gold-lt);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+  border-bottom:1px solid var(--line);padding-bottom:0.5rem;transition:color 0.3s,border-color 0.3s}
+.lg-cta:hover{color:var(--ivory);border-color:var(--gold)}
+.lg-cta::after{content:'\2192';transition:transform 0.3s}
+.lg-cta:hover::after{transform:translateX(5px)}
 
-/* ── BRIDAL GALLERY SECTION (dedicated) ── */
-.bridal-gallery{padding:6rem 4rem;background:var(--bg2);position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.bridal-gallery::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(155,89,208,0.06) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(212,168,67,0.04) 0%,transparent 50%);pointer-events:none}
-.bg-header{text-align:center;margin-bottom:3.5rem;position:relative;z-index:1;max-width:700px;margin-left:auto;margin-right:auto}
-.bg-header .section-label{justify-content:center;display:inline-flex}
-.bg-header p{font-size:0.88rem;color:var(--text-muted);line-height:1.85;font-weight:300;margin-top:1rem}
-.bg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
-.bg-tile{position:relative;overflow:hidden;border-radius:6px;cursor:pointer;background:#0a0610;border:1px solid rgba(155,89,208,0.14);aspect-ratio:3/4;transition:border-color 0.4s,transform 0.4s,box-shadow 0.4s}
-.bg-tile:hover{border-color:rgba(155,89,208,0.55);transform:translateY(-4px);box-shadow:0 12px 30px rgba(123,63,175,0.25)}
-.bg-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.92) saturate(1.05);transition:filter 0.5s,transform 0.7s}
-.bg-tile:hover img{filter:brightness(1.05) saturate(1.15);transform:scale(1.06)}
-.bg-tile-badge{position:absolute;top:0.8rem;left:0.8rem;background:rgba(13,8,17,0.82);backdrop-filter:blur(8px);border:1px solid rgba(212,168,67,0.3);border-radius:20px;padding:0.25rem 0.7rem;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light);font-weight:600;z-index:2;opacity:0;transform:translateY(-5px);transition:opacity 0.3s,transform 0.3s}
+/* ══ SERVICES — typographic categories, no icon boxes ══ */
+.services-header,.why-header,.lg-header,.bg-header,.makeup-header{width:var(--shell);max-width:64ch;margin:0 auto 3.5rem}
+.services-header,.why-header,.makeup-header{max-width:var(--shell)}
+.service-categories{display:flex;flex-direction:column;width:var(--shell);margin:0 auto}
+.cat-block{display:grid;grid-template-columns:minmax(210px,1fr) 2.4fr;grid-template-rows:auto 1fr;gap:0.5rem 2.5rem;padding:2.4rem 0;border-top:1px solid var(--line-soft)}
+.cat-header{grid-column:1;grid-row:1;align-self:start}
+.cat-subtitle{grid-column:1;grid-row:2;align-self:start}
+.services-pills{grid-column:2;grid-row:1 / span 2}
+.cat-block:last-child{border-bottom:1px solid var(--line-soft)}
+.cat-title{font-size:1.5rem;line-height:1.2;margin-bottom:0.5rem}
+.cat-subtitle{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:34ch}
+.services-pills{display:flex;flex-wrap:wrap;gap:0.5rem;align-content:flex-start}
+.pill{border:1px solid var(--line-soft);color:var(--ivory);font-size:0.82rem;font-weight:300;padding:0.5rem 1.05rem;border-radius:999px;transition:border-color 0.3s,color 0.3s,background 0.3s;cursor:default}
+.pill:hover{border-color:rgba(201,164,76,0.6);color:var(--gold-lt)}
+.pill.special,.pill.gold{border-color:rgba(201,164,76,0.45);color:var(--gold-lt);font-weight:400}
+.pill.special:hover,.pill.gold:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* ══ MAKEUP — a menu, not a card grid ══ */
+.makeup-inner{width:var(--shell);margin:0 auto}
+.makeup-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 3.5rem;margin-top:3rem}
+.makeup-card{padding:1.5rem 0;border-top:1px solid var(--line-soft);transition:padding-left 0.35s,border-color 0.35s;position:relative}
+.makeup-card::before{content:'';position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--gold);transition:width 0.45s}
+.makeup-card:hover::before{width:100%}
+.makeup-card:hover{padding-left:0.7rem}
+.makeup-card h4{font-family:'Bodoni Moda',serif;font-size:1.2rem;font-weight:500;color:var(--ivory);margin-bottom:0.3rem}
+.makeup-card p{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:40ch}
+
+/* ══ ABOUT ══ */
+.about-inner{width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.about-photo-main{position:relative;border-radius:3px}
+.about-photo-main::before{content:'';position:absolute;inset:-14px -14px 14px 14px;border:1px solid var(--line);border-radius:3px;pointer-events:none}
+.about-photo-main img{width:100%;height:clamp(360px,46vw,520px);object-fit:cover;object-position:center top;border-radius:3px;position:relative;z-index:1}
+.about-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.6rem;background:linear-gradient(transparent,rgba(6,2,10,0.92));z-index:2;border-radius:0 0 3px 3px}
+.about-photo-overlay p{font-family:'Bodoni Moda',serif;font-style:italic;font-size:0.98rem;color:var(--gold-lt)}
+.about-text p{font-size:0.97rem;line-height:1.9;margin:1.1rem 0;max-width:50ch}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:2.4rem;border-top:1px solid var(--line-soft)}
+.stat-card{padding:1.5rem 1rem 0;text-align:center;border-right:1px solid var(--line-soft)}
+.stat-card:last-child{border-right:0}
+.stat-num{font-size:2.2rem;line-height:1;color:var(--gold-lt);font-weight:400}
+.stat-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem}
+
+/* ══ BRIDAL — the medallion watermark lives here ══ */
+.bridal{background:var(--ink-3);position:relative;overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.bridal-watermark{position:absolute;top:50%;right:-14%;width:min(760px,86vw);height:min(760px,86vw);transform:translateY(-50%);color:var(--gold);opacity:0.055;pointer-events:none;z-index:0}
+.bridal-inner{position:relative;z-index:1;width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.bridal-tagline{font-family:'Sacramento',cursive;font-size:1.9rem;color:var(--gold-lt);margin:1.2rem 0 1.4rem;line-height:1.2}
+.bridal-desc{font-size:0.97rem;line-height:1.9;margin-bottom:2.2rem;max-width:50ch}
+.bridal-cards{display:flex;flex-direction:column}
+.bridal-card{padding:1.35rem 0;border-top:1px solid var(--line-soft);display:flex;gap:1.2rem;align-items:baseline;transition:padding-left 0.35s}
+.bridal-card:last-child{border-bottom:1px solid var(--line-soft)}
+.bridal-card:hover{padding-left:0.7rem}
+.bridal-card::before{content:'';width:6px;height:6px;border-radius:50%;border:1px solid var(--gold);flex-shrink:0;transform:translateY(-3px);transition:background 0.35s}
+.bridal-card:hover::before{background:var(--gold)}
+.bridal-card h4{font-family:'Bodoni Moda',serif;font-size:1.08rem;color:var(--ivory);margin-bottom:0.25rem;font-weight:500}
+.bridal-card p{font-size:0.84rem;color:var(--muted);line-height:1.7}
+
+/* ══ WHY — hairline columns ══ */
+.why-inner{width:var(--shell);margin:0 auto}
+
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-soft)}
+.why-card{padding:2.2rem 1.8rem 0 0;border-right:1px solid var(--line-soft);position:relative}
+.why-card:last-child{border-right:0}
+.why-card:not(:first-child){padding-left:1.8rem}
+.why-card::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.5s}
+.why-card:hover::before{width:100%}
+.why-card h4{font-family:'Bodoni Moda',serif;font-size:1.15rem;color:var(--ivory);margin-bottom:0.5rem;font-weight:500}
+.why-card p{font-size:0.85rem;color:var(--muted);line-height:1.75}
+
+/* ══ BRIDAL GALLERY ══ */
+.bridal-gallery{background:var(--ink-2);border-top:1px solid var(--line-soft)}
+
+.bg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:var(--shell);margin:0 auto}
+.bg-tile{position:relative;overflow:hidden;cursor:pointer;background:#0a0610;aspect-ratio:3/4;border-radius:3px}
+.bg-tile::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.4s;z-index:3;pointer-events:none;border-radius:3px}
+.bg-tile:hover::after{border-color:rgba(201,164,76,0.6)}
+.bg-tile img{width:100%;height:100%;object-fit:cover;filter:brightness(0.86) saturate(1.03);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
+.bg-tile:hover img{filter:brightness(1.02) saturate(1.12);transform:scale(1.05)}
+.bg-tile-badge{position:absolute;bottom:0.9rem;left:0.9rem;right:0.9rem;font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-lt);
+  font-weight:500;z-index:3;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
 .bg-tile:hover .bg-tile-badge{opacity:1;transform:translateY(0)}
-.bg-tile-zoom{position:absolute;bottom:0.8rem;right:0.8rem;width:34px;height:34px;border-radius:50%;background:rgba(13,8,17,0.85);backdrop-filter:blur(8px);border:1px solid rgba(212,168,67,0.35);display:flex;align-items:center;justify-content:center;z-index:2;opacity:0;transform:scale(0.7);transition:opacity 0.3s,transform 0.3s;color:var(--gold-light);font-size:0.9rem}
+.bg-tile-zoom{position:absolute;top:0.9rem;right:0.9rem;width:30px;height:30px;border-radius:50%;border:1px solid rgba(244,235,226,0.5);
+  display:flex;align-items:center;justify-content:center;z-index:3;opacity:0;transform:scale(0.8);transition:opacity 0.35s,transform 0.35s;color:var(--ivory);font-size:0.75rem;
+  background:rgba(10,5,16,0.5);backdrop-filter:blur(4px)}
 .bg-tile:hover .bg-tile-zoom{opacity:1;transform:scale(1)}
 
-/* ── LIGHTBOX ── */
-.lightbox{position:fixed;inset:0;background:rgba(5,2,10,0.96);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;animation:lbFade 0.3s ease}
+/* ══ LIGHTBOX ══ */
+.lightbox{position:fixed;inset:0;background:rgba(6,2,10,0.97);backdrop-filter:blur(14px);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;animation:lbFade 0.3s ease}
 .lightbox.active{display:flex}
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
-.lb-inner{position:relative;max-width:min(92vw,900px);max-height:88vh;display:flex;align-items:center;justify-content:center}
-.lb-img{max-width:100%;max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid rgba(212,168,67,0.25)}
-.lb-close{position:absolute;top:-3rem;right:0;background:rgba(21,14,28,0.85);border:1px solid rgba(212,168,67,0.3);color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
-.lb-close:hover{background:rgba(155,89,208,0.25);border-color:var(--purple-bright)}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(21,14,28,0.85);border:1px solid rgba(212,168,67,0.3);color:var(--text);width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s;z-index:2}
-.lb-nav:hover{background:rgba(155,89,208,0.25);border-color:var(--purple-bright)}
-.lb-prev{left:-3.5rem}
-.lb-next{right:-3.5rem}
-.lb-counter{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
-.lb-counter span{color:var(--gold-light)}
+.lb-inner{position:relative;max-width:min(92vw,880px);max-height:86vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:100%;max-height:86vh;object-fit:contain;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+.lb-close,.lb-nav{background:transparent;border:1px solid rgba(244,235,226,0.28);color:var(--ivory);border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s}
+.lb-close:hover,.lb-nav:hover{border-color:var(--gold);background:rgba(201,164,76,0.12)}
+.lb-close{position:absolute;top:-3.2rem;right:0;width:38px;height:38px;font-size:1rem}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:1.4rem;z-index:2}
+.lb-prev{left:-3.6rem}
+.lb-next{right:-3.6rem}
+.lb-counter{position:absolute;bottom:-2.6rem;left:50%;transform:translateX(-50%);font-size:0.66rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted)}
+.lb-counter span{color:var(--gold-lt)}
 
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  nav{padding:0.8rem 1.5rem}
-  .nav-links{display:none}
-  .hero{grid-template-columns:1fr}
-  .hero-right{min-height:70vw}
-  .hero-logo-band{padding:1.2rem}
-  .hero-logo-circle{width:70px;height:70px}
-  .hero-left{padding:2.5rem 1.5rem}
-  .photo-banner{grid-template-columns:1fr;height:auto}
-  .pb-main{height:260px}
-  .pb-logo{display:none!important;height:200px;flex-direction:row;gap:1.2rem;border-left:none;border-top:1px solid var(--border)}
-  .pb-logo-img{width:100px;height:100px}
-  .services,.bridal,.why,.contact,.about,.makeup,.landing-gallery-section,.bridal-gallery{padding:4rem 1.2rem}
-  .lg-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px}
-  .lg-item{height:180px}
-  .lg-item.lg-feature{grid-column:span 2;grid-row:auto;height:230px}
-  .bg-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .lb-prev{left:0.5rem}
-  .lb-next{right:0.5rem}
-  .lb-close{top:-2.8rem;right:0;width:36px;height:36px}
-  .about-inner,.bridal-inner,.contact-inner{grid-template-columns:1fr;gap:3rem}
-  .why-grid,.makeup-grid{grid-template-columns:1fr 1fr}
-  .form-grid{grid-template-columns:1fr}
-  footer{grid-template-columns:1fr;padding:3rem 1.5rem}
-  .footer-bottom{padding:1.1rem 1.5rem}
-  .map-strip{padding:2rem 1.5rem}
+/* ══ CONTACT ══ */
+.contact-inner{width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.contact-item{display:flex;align-items:flex-start;gap:1.1rem;padding:1.5rem 0;border-top:1px solid var(--line-soft)}
+.contact-item:last-of-type{border-bottom:1px solid var(--line-soft)}
+.contact-icon{width:34px;height:34px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.contact-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
+.contact-item h4{font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem;font-weight:500}
+.contact-item p,.contact-item a{font-size:0.95rem;color:var(--ivory);font-weight:300;text-decoration:none;line-height:1.7}
+.contact-item a:hover{color:var(--gold-lt)}
+.contact-form h3{font-size:1.9rem;margin-bottom:0.5rem}
+.form-sub{font-size:0.88rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.7;max-width:44ch}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem}
+.form-grid.full{grid-template-columns:1fr}
+.inp{padding:0.9rem 1rem;border:1px solid var(--line-soft);border-radius:3px;background:rgba(244,235,226,0.03);font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;
+  color:var(--ivory);outline:none;transition:border-color 0.3s,background 0.3s;width:100%}
+.inp:focus{border-color:var(--gold);background:rgba(201,164,76,0.05)}
+.inp::placeholder{color:var(--muted);opacity:0.75}
+.inp:user-invalid{border-color:rgba(255,47,160,0.55)}
+select.inp{cursor:pointer;color:var(--ivory)}
+select.inp option{background:var(--ink-3);color:var(--ivory)}
+.btn-submit{width:100%;background:var(--gold);color:var(--ink);border:1px solid var(--gold);cursor:pointer;font-family:'Jost',sans-serif;font-size:0.74rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;padding:1.05rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s;margin-top:0.7rem}
+.btn-submit:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,164,76,0.22)}
+
+/* ══ MAP STRIP ══ */
+.map-strip{background:var(--ink-2);padding:2.6rem var(--pad);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-top:1px solid var(--line-soft)}
+.map-strip strong{font-family:'Bodoni Moda',serif;color:var(--ivory);display:block;font-size:1.15rem;font-weight:500;margin-bottom:0.35rem}
+.map-strip p{color:var(--muted);font-size:0.88rem;max-width:52ch;line-height:1.7}
+.btn-map{display:inline-flex;align-items:center;gap:0.6rem;border:1px solid var(--gold);color:var(--gold-lt);text-decoration:none;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.16em;text-transform:uppercase;padding:0.85rem 1.7rem;border-radius:999px;transition:background 0.3s,color 0.3s;white-space:nowrap}
+.btn-map:hover{background:var(--gold);color:var(--ink)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;border-top:1px solid var(--line-soft)}
+.footer-grid{width:var(--shell);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.footer-logo-img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,164,76,0.5)}
+.footer-brand{font-family:'Sacramento',cursive;font-size:2rem;color:var(--ivory);line-height:1}
+.footer-brand span{color:var(--gold)}
+.footer-tagline{font-family:'Bodoni Moda',serif;font-style:italic;font-size:0.95rem;color:var(--muted);margin-bottom:0.5rem}
+.footer-zone{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+.footer-contact-quick{font-size:0.88rem;color:var(--muted);line-height:2.1}
+.footer-contact-quick a{color:var(--ivory);text-decoration:none;border-bottom:1px solid var(--line);transition:color 0.3s}
+.footer-contact-quick a:hover{color:var(--gold-lt)}
+.footer-col h4{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:0.7rem}
+.footer-col a{font-size:0.88rem;color:var(--muted);text-decoration:none;transition:color 0.3s;font-weight:300}
+.footer-col a:hover{color:var(--gold-lt)}
+.footer-seal{display:flex;flex-direction:column;align-items:center;gap:1rem;padding:3rem 0 0;margin-top:3rem;border-top:1px solid var(--line-soft)}
+.footer-seal .medallion{width:44px;height:44px;opacity:0.75}
+.footer-bottom{background:var(--ink);padding:0 var(--pad) 2rem;text-align:center}
+.footer-bottom p{font-size:0.7rem;color:var(--muted);opacity:0.5;letter-spacing:0.04em}
+
+/* ══ STICKY MOBILE ACTION BAR ══ */
+.mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(10,5,16,0.96);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);padding:0.7rem 0.9rem calc(0.7rem + env(safe-area-inset-bottom));gap:0.7rem}
+.mobile-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;font-size:0.74rem;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem;border-radius:999px}
+.mb-call{border:1px solid var(--gold);color:var(--gold-lt)}
+.mb-wa{background:#1FA855;color:#fff}
+.mb-wa svg{width:15px;height:15px;fill:currentColor}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.8s cubic-bezier(.2,.7,.3,1),transform 0.8s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.anim{opacity:0;animation:fadeUp 1s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.d1{animation-delay:0.15s}.d2{animation-delay:0.3s}.d3{animation-delay:0.45s}.d4{animation-delay:0.6s}.d5{animation-delay:0.75s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  .lg-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .lg-item{height:220px}
+  .lg-item.lg-feature{grid-column:span 2;grid-row:auto;height:300px}
+  .bg-grid{grid-template-columns:repeat(3,1fr)}
+  .cat-block{grid-template-columns:1fr;gap:0.5rem}
+  .cat-header,.cat-subtitle,.services-pills{grid-column:1;grid-row:auto}
+  .services-pills{margin-top:1rem}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .why-card{padding-right:1.5rem}
+  .why-card:nth-child(2){border-right:0}
+  .why-card:nth-child(3){padding-left:0;border-top:1px solid var(--line-soft);margin-top:-1px}
+  .why-card:nth-child(4){border-top:1px solid var(--line-soft);margin-top:-1px}
+  .why-card:nth-child(odd){padding-left:0}
+  .why-card:nth-child(even){padding-left:1.8rem}
+}
+@media(max-width:860px){
+  .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:1.8rem;background:var(--ink);
+    transform:translateY(-100%);transition:transform 0.5s cubic-bezier(.6,0,.2,1);z-index:-1}
+  nav.open .nav-links{transform:translateY(0)}
+  .nav-links a{font-family:'Bodoni Moda',serif;font-size:1.5rem;letter-spacing:0.04em;text-transform:none;color:var(--ivory);font-weight:400}
+  .nav-links .btn-nav{font-family:'Jost',sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.16em;padding:0.8rem 1.8rem}
+  .nav-toggle{display:block;z-index:2}
+  nav.open{background:transparent;border-bottom-color:transparent}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:2rem}
+  .hero-media{position:relative;height:42svh;min-height:280px}
+  .hero-media img{object-position:58% 45%}
+  .hero-scrim{background:linear-gradient(to top,var(--ink) 1%,rgba(10,5,16,0.15) 55%)}
+  .hero-inner{padding:2.5rem var(--pad) 1rem;grid-column:1}
+  .hero-emblem{margin-bottom:1.5rem}
+  .hero-badge{position:static;text-align:left;border-right:0;border-left:1px solid var(--line);padding:0 0 0 1.1rem;margin-top:2rem;display:inline-block}
+  .about-inner,.bridal-inner,.contact-inner{grid-template-columns:1fr}
+  .about-photo-main::before{inset:-10px -10px 10px 10px}
+  .makeup-grid{grid-template-columns:1fr;gap:0}
+  .footer-grid{grid-template-columns:1fr;gap:2.5rem}
+  .map-strip{flex-direction:column;align-items:flex-start}
+  .lb-prev{left:0.4rem}.lb-next{right:0.4rem}
+  .lb-close{top:-3rem;width:34px;height:34px}
+  .mobile-bar{display:flex}
+  body{padding-bottom:4.6rem}
+  .bridal-watermark{right:-40%;opacity:0.04}
 }
 @media(max-width:600px){
-  .why-grid,.makeup-grid{grid-template-columns:1fr}
-  .about-stats{grid-template-columns:1fr 1fr}
-  .lg-grid{grid-template-columns:1fr;gap:10px}
-  .lg-item,.lg-item.lg-feature{height:210px;grid-column:auto}
+  .lg-grid{grid-template-columns:1fr}
+  .lg-item,.lg-item.lg-feature{height:260px;grid-column:auto}
   .bg-grid{grid-template-columns:repeat(2,1fr)}
-  .bg-header p,.lg-header p{font-size:0.82rem}
-  .hero h1{font-size:2.1rem}
-  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .why-grid{grid-template-columns:1fr}
+  .why-card,.why-card:nth-child(even){padding:2rem 0 0;border-right:0;border-top:1px solid var(--line-soft);margin-top:-1px}
+  .why-card:first-child{border-top:0}
+  .about-stats{grid-template-columns:1fr;border-top:0}
+  .stat-card{border-right:0;border-top:1px solid var(--line-soft);text-align:left;padding:1.2rem 0 0;display:flex;align-items:baseline;gap:1rem}
+  .stat-label{margin-top:0}
+  .form-grid{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:stretch}
+  .hero-ctas a{text-align:center;justify-content:center}
 }
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .hero-hours::before{animation:none}
+  .marquee-track{animation:none}
+}
+
+/* content defaults */
+.section-title{margin-bottom:1rem}
+.services-header p:not(.eyebrow),.makeup-header p:not(.eyebrow),.why-header p:not(.eyebrow),.lg-header p:not(.eyebrow),.bg-header p:not(.eyebrow){font-size:1rem;line-height:1.9;color:var(--muted);max-width:58ch;margin:0.4rem auto 0}
+.contact-inner .section-title{margin-bottom:2rem}
+.contact-item b{color:var(--gold-lt);font-weight:500}
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <symbol id="medallion" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="0.9">
+      <circle cx="24" cy="24" r="22" stroke-dasharray="0.6 3.4" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="17.5"/>
+      <circle cx="24" cy="24" r="12.5" stroke-width="8" stroke-dasharray="1.3 4.4"/>
+      <circle cx="24" cy="24" r="6.6"/>
+    </g>
+    <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+  </symbol>
+</svg>
 
 <!-- NAV -->
 <nav>
@@ -348,7 +418,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       <span class="nav-brand-sub">Complete Beauty Zone</span>
     </div>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">Our Team</a></li>
     <li><a href="#bridal">Bridal</a></li>
@@ -357,46 +427,33 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
     <li><a href="#contact">Contact</a></li>
     <li><a href="tel:+919691566637" class="btn-nav">📞 Call Us</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="tag-pill anim d1">Ladies Beauty Salon — Bhopal</div>
-    <h1 class="anim d2">Where Your <em>Bridal<br>Dreams</em> Take Place</h1>
-    <p class="salon-name-hero anim d2">Tarasha's Beauty Salon</p>
-    <p class="complete-zone anim d3">✦ A Complete Beauty Zone ✦</p>
-    <p class="hero-desc anim d3">At Tarasha Salon, we specialize in complete bridal transformations — blending artistry, elegance, and care to bring your dream wedding look to life.</p>
+  <div class="hero-media">
+    <img src="assets/e34b3b6a.jpg" alt="Tarasha's neon sign glowing above five hands painted with mehendi">
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-emblem anim d1">
+      <img src="assets/7e9e56c3.jpg" alt="Tarasha's Complete Beauty Zone logo">
+      <div>Ladies Beauty Salon &mdash; Bhopal<span>Sonagiri, BHEL Bhopal</span></div>
+    </div>
+    <h1 class="anim d2">Where Your <em>Bridal Dreams</em><br>Take Place</h1>
+    <p class="anim d2"><span class="script-name">Tarasha's</span></p>
+    <p class="hero-zone anim d3">A Complete Beauty Zone</p>
+    <p class="hero-desc anim d3">At Tarasha Salon, we specialize in complete bridal transformations &mdash; blending artistry, elegance, and care to bring your dream wedding look to life.</p>
     <div class="hero-ctas anim d4">
       <a href="#contact" class="btn-primary">Book Appointment</a>
-      <a href="https://wa.me/919691566637" target="_blank" class="btn-wa">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp Us
-      </a>
+      <a href="https://wa.me/919691566637" target="_blank" class="btn-wa"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Us</a>
     </div>
-    <div class="hours-badge anim d5">🕐 Open All Days &nbsp;<span>11:00 AM – 7:00 PM</span></div>
+    <div class="hero-hours anim d5">Open All Days <b>11:00 AM &ndash; 7:00 PM</b></div>
   </div>
-
-  <!-- HERO RIGHT: logo band on top + neon sign below -->
-  <div class="hero-right">
-    <div class="hero-logo-band">
-      <div class="hero-logo-circle">
-        <img src="assets/7e9e56c3.jpg" alt="Tarasha's Complete Beauty Zone Logo">
-      </div>
-      <div class="hero-logo-text">
-        <h2><em>Tarasha's</em></h2>
-        <p>Complete Beauty Zone</p>
-        <p style="margin-top:0.2rem;font-size:0.58rem;letter-spacing:0.15em;color:rgba(155,136,181,0.6)">Sonagiri, BHEL Bhopal</p>
-      </div>
-    </div>
-    <div class="hero-neon-photo">
-      <img src="assets/e34b3b6a.jpg" alt="Tarasha's neon sign with five hands">
-      <div class="hero-neon-overlay"></div>
-      <div class="hero-float-badge">
-        <div class="hf-num">10+</div>
-        <div class="hf-lbl">Expert Artists</div>
-      </div>
-    </div>
+  <div class="hero-badge anim d5">
+    <div class="hf-num">10+</div>
+    <div class="hf-lbl">Expert Artists</div>
   </div>
 </section>
 
@@ -434,10 +491,12 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
   </div>
 </div>
 
+<div class="rule-wrap"><div class="rule"><svg class="medallion"><use href="#medallion"/></svg></div></div>
+
 <!-- LANDING GALLERY — replaces old single team photo -->
 <section class="landing-gallery-section">
-  <div class="lg-header">
-    <p class="section-label">Signature Work</p>
+  <div class="lg-header center">
+    <p class="eyebrow">Signature Work</p>
     <h2 class="section-title">Bridal <em>Portfolio</em></h2>
     <p>A glimpse into the brides we have styled — every look crafted with care, every detail a celebration of her special day.</p>
   </div>
@@ -490,14 +549,14 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 
 <!-- SERVICES -->
 <section class="services" id="services">
-  <div class="services-header">
-    <p class="section-label">What We Offer</p>
+  <div class="services-header center">
+    <p class="eyebrow">What We Offer</p>
     <h2 class="section-title">Our <em>Services</em></h2>
-    <p class="services-intro">From everyday grooming to complete bridal transformations — everything a modern woman needs, all under one roof.</p>
+    <p>From everyday grooming to complete bridal transformations — everything a modern woman needs, all under one roof.</p>
   </div>
   <div class="service-categories">
     <div class="cat-block">
-      <div class="cat-header"><div class="cat-emoji">💇</div><h3 class="cat-title">Hair Services</h3></div>
+      <div class="cat-header"><h3 class="cat-title">Hair Services</h3></div>
       <p class="cat-subtitle">Premium hair treatments & styling with professional-grade products</p>
       <div class="services-pills">
         <span class="pill">Hair Cut</span><span class="pill">Chemical Treatment</span>
@@ -511,7 +570,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       </div>
     </div>
     <div class="cat-block">
-      <div class="cat-header"><div class="cat-emoji">✨</div><h3 class="cat-title">Facial Treatments</h3></div>
+      <div class="cat-header"><h3 class="cat-title">Facial Treatments</h3></div>
       <p class="cat-subtitle">Reveal your most radiant, glowing skin with our range of facials</p>
       <div class="services-pills">
         <span class="pill special">✦ Tarasha Special Herbal Facial</span>
@@ -523,7 +582,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       </div>
     </div>
     <div class="cat-block">
-      <div class="cat-header"><div class="cat-emoji">🌿</div><h3 class="cat-title">Skin Treatments</h3></div>
+      <div class="cat-header"><h3 class="cat-title">Skin Treatments</h3></div>
       <p class="cat-subtitle">Advanced skin care solutions for healthy, luminous skin</p>
       <div class="services-pills">
         <span class="pill">Skin Lightening Treatment</span>
@@ -533,7 +592,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       </div>
     </div>
     <div class="cat-block">
-      <div class="cat-header"><div class="cat-emoji">🌸</div><h3 class="cat-title">Body Care</h3></div>
+      <div class="cat-header"><h3 class="cat-title">Body Care</h3></div>
       <p class="cat-subtitle">Luxurious full-body pampering sessions</p>
       <div class="services-pills">
         <span class="pill">Body Spa</span><span class="pill">Body Polishing</span>
@@ -541,7 +600,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       </div>
     </div>
     <div class="cat-block">
-      <div class="cat-header"><div class="cat-emoji">💅</div><h3 class="cat-title">Hand & Foot Care</h3></div>
+      <div class="cat-header"><h3 class="cat-title">Hand & Foot Care</h3></div>
       <p class="cat-subtitle">Perfectly groomed hands and feet</p>
       <div class="services-pills">
         <span class="pill">Basic Manicure</span><span class="pill">Gel Manicure</span>
@@ -555,20 +614,20 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 <!-- MAKEUP -->
 <section class="makeup" id="makeup">
   <div class="makeup-inner">
-    <div style="text-align:center;margin-bottom:1rem">
-      <p class="section-label">For Every Occasion</p>
+    <div class="makeup-header center">
+      <p class="eyebrow">For Every Occasion</p>
       <h2 class="section-title">Professional <em>Makeup</em></h2>
-      <p style="font-size:0.85rem;color:var(--text-muted);max-width:480px;margin:0.8rem auto 0;line-height:1.8;font-weight:300">Simple to HD — we craft the perfect look for every moment of your life.</p>
+      <p>Simple to HD — we craft the perfect look for every moment of your life.</p>
     </div>
     <div class="makeup-grid">
-      <div class="makeup-card"><span class="makeup-icon">💄</span><h4>Simple Makeup</h4><p>Natural, everyday looks for a fresh, polished appearance</p></div>
-      <div class="makeup-card"><span class="makeup-icon">📸</span><h4>HD Makeup</h4><p>Flawless, camera-ready finish using professional HD products</p></div>
-      <div class="makeup-card"><span class="makeup-icon">🎉</span><h4>Party Makeup</h4><p>Glam looks that make you the star of every celebration</p></div>
-      <div class="makeup-card"><span class="makeup-icon">🪔</span><h4>Garba Makeup</h4><p>Vibrant, festive looks perfect for Navratri & Garba nights</p></div>
-      <div class="makeup-card"><span class="makeup-icon">🎶</span><h4>Sangeet Makeup</h4><p>Bright, expressive looks for your unforgettable Sangeet night</p></div>
-      <div class="makeup-card"><span class="makeup-icon">💍</span><h4>Engagement Look</h4><p>Sophisticated elegance for the most romantic milestone</p></div>
-      <div class="makeup-card"><span class="makeup-icon">👰</span><h4>Marriage Makeup</h4><p>Timeless bridal beauty that lasts through every ritual</p></div>
-      <div class="makeup-card"><span class="makeup-icon">🌹</span><h4>Reception Makeup</h4><p>Stunning evening look for your grand reception celebration</p></div>
+      <div class="makeup-card"><h4>Simple Makeup</h4><p>Natural, everyday looks for a fresh, polished appearance</p></div>
+      <div class="makeup-card"><h4>HD Makeup</h4><p>Flawless, camera-ready finish using professional HD products</p></div>
+      <div class="makeup-card"><h4>Party Makeup</h4><p>Glam looks that make you the star of every celebration</p></div>
+      <div class="makeup-card"><h4>Garba Makeup</h4><p>Vibrant, festive looks perfect for Navratri & Garba nights</p></div>
+      <div class="makeup-card"><h4>Sangeet Makeup</h4><p>Bright, expressive looks for your unforgettable Sangeet night</p></div>
+      <div class="makeup-card"><h4>Engagement Look</h4><p>Sophisticated elegance for the most romantic milestone</p></div>
+      <div class="makeup-card"><h4>Marriage Makeup</h4><p>Timeless bridal beauty that lasts through every ritual</p></div>
+      <div class="makeup-card"><h4>Reception Makeup</h4><p>Stunning evening look for your grand reception celebration</p></div>
     </div>
   </div>
 </section>
@@ -583,14 +642,14 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       </div>
     </div>
     <div class="about-text">
-      <p class="section-label">Meet Our Team</p>
-      <h2 class="section-title" style="margin-bottom:1rem;">Skilled with<br><em>Heart & Soul</em></h2>
+      <p class="eyebrow">Meet Our Team</p>
+      <h2 class="section-title">Skilled with<br><em>Heart & Soul</em></h2>
       <p>Tarasha's Ladies Beauty Salon is built on passion, skill, and a deep love for beauty. Our team of trained professionals is dedicated to making every client feel special — from a simple haircut to a full bridal transformation.</p>
       <p>Based in Sonagiri, BHEL Bhopal, we have grown into a trusted name in the community. Each of our artists brings expertise, warmth, and attention to detail that you can feel from the moment you walk in.</p>
       <div class="about-stats">
         <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Expert Artists</div></div>
         <div class="stat-card"><div class="stat-num">30+</div><div class="stat-label">Services</div></div>
-        <div class="stat-card"><div class="stat-num">💜</div><div class="stat-label">Ladies Only</div></div>
+        <div class="stat-card"><div class="stat-num">♡</div><div class="stat-label">Ladies Only</div></div>
       </div>
     </div>
   </div>
@@ -598,20 +657,21 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 
 <!-- BRIDAL -->
 <section class="bridal" id="bridal">
+  <svg class="bridal-watermark" aria-hidden="true"><use href="#medallion"/></svg>
   <div class="bridal-inner">
     <div>
-      <p class="section-label">The Tarasha Bridal Experience</p>
+      <p class="eyebrow">The Tarasha Bridal Experience</p>
       <h2 class="section-title">Your Dream<br><em>Wedding Look</em></h2>
       <p class="bridal-tagline">"Live your own style with Tarasha's"</p>
       <p class="bridal-desc">We offer a complete, head-to-toe bridal experience — from your pre-bridal glow rituals to the final day transformation. Bridal Package includes Pre-bridal therapy, Bridal Makeup, Jewellery, Lehenga and Accessories.</p>
       <a href="https://wa.me/919691566637?text=Hi%20Tarasha%2C%20I%20would%20like%20to%20enquire%20about%20the%20Bridal%20Package" target="_blank" class="btn-gold">Enquire About Bridal Package</a>
     </div>
     <div class="bridal-cards">
-      <div class="bridal-card"><div class="bridal-card-icon">💄</div><div><h4>Bridal Makeup</h4><p>HD & traditional bridal looks — Simple, Engagement, Marriage & Reception</p></div></div>
-      <div class="bridal-card"><div class="bridal-card-icon">👗</div><div><h4>Rental Lehenga & Gowns</h4><p>Exquisite collection on rent or purchase — Indian & Western styles</p></div></div>
-      <div class="bridal-card"><div class="bridal-card-icon">💍</div><div><h4>Rental Jewellery & Accessories</h4><p>Complete sets, maang tikka, bangles and more — rent or buy</p></div></div>
-      <div class="bridal-card"><div class="bridal-card-icon">✨</div><div><h4>Pre-Bridal Therapy</h4><p>Skin prep, facials, hair treatments & body pampering before the big day</p></div></div>
-      <div class="bridal-card"><div class="bridal-card-icon">💆</div><div><h4>Hairstyling & Draping</h4><p>Bridal hairstyling, saree draping & complete styling for the occasion</p></div></div>
+      <div class="bridal-card"><div><h4>Bridal Makeup</h4><p>HD & traditional bridal looks — Simple, Engagement, Marriage & Reception</p></div></div>
+      <div class="bridal-card"><div><h4>Rental Lehenga & Gowns</h4><p>Exquisite collection on rent or purchase — Indian & Western styles</p></div></div>
+      <div class="bridal-card"><div><h4>Rental Jewellery & Accessories</h4><p>Complete sets, maang tikka, bangles and more — rent or buy</p></div></div>
+      <div class="bridal-card"><div><h4>Pre-Bridal Therapy</h4><p>Skin prep, facials, hair treatments & body pampering before the big day</p></div></div>
+      <div class="bridal-card"><div><h4>Hairstyling & Draping</h4><p>Bridal hairstyling, saree draping & complete styling for the occasion</p></div></div>
     </div>
   </div>
 </section>
@@ -619,23 +679,23 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 <!-- WHY -->
 <section class="why">
   <div class="why-inner">
-    <div class="why-header">
-      <p class="section-label">Why Choose Us</p>
+    <div class="why-header center">
+      <p class="eyebrow">Why Choose Us</p>
       <h2 class="section-title">The Tarasha <em>Difference</em></h2>
     </div>
     <div class="why-grid">
-      <div class="why-card"><div class="why-icon">🌿</div><h4>Herbal & Natural</h4><p>Our signature herbal facial uses safe, natural ingredients for every skin type</p></div>
-      <div class="why-card"><div class="why-icon">👑</div><h4>Complete Bridal</h4><p>Makeup, outfit, jewellery, draping — your full bridal look in one place</p></div>
-      <div class="why-card"><div class="why-icon">💜</div><h4>Ladies Only</h4><p>A safe, private, and welcoming space exclusively for women</p></div>
-      <div class="why-card"><div class="why-icon">⭐</div><h4>All Days Open</h4><p>Open every day 11 AM to 7 PM — we're here whenever you need us</p></div>
+      <div class="why-card"><h4>Herbal & Natural</h4><p>Our signature herbal facial uses safe, natural ingredients for every skin type</p></div>
+      <div class="why-card"><h4>Complete Bridal</h4><p>Makeup, outfit, jewellery, draping — your full bridal look in one place</p></div>
+      <div class="why-card"><h4>Ladies Only</h4><p>A safe, private, and welcoming space exclusively for women</p></div>
+      <div class="why-card"><h4>All Days Open</h4><p>Open every day 11 AM to 7 PM — we're here whenever you need us</p></div>
     </div>
   </div>
 </section>
 
 <!-- BRIDAL GALLERY -->
 <section class="bridal-gallery" id="gallery">
-  <div class="bg-header">
-    <p class="section-label">Our Brides</p>
+  <div class="bg-header center">
+    <p class="eyebrow">Our Brides</p>
     <h2 class="section-title">Bridal <em>Gallery</em></h2>
     <p>From intimate pre-wedding portraits to complete wedding-day transformations — a curated collection of our recent bridal work. Tap any photo to view it in full.</p>
   </div>
@@ -718,8 +778,8 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <p class="section-label" style="justify-content:flex-start">Find Us</p>
-      <h2 class="section-title" style="margin-bottom:2rem;">Visit <em>Tarasha's</em></h2>
+      <p class="eyebrow">Find Us</p>
+      <h2 class="section-title">Visit <em>Tarasha's</em></h2>
       <div class="contact-item">
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div><h4>Address</h4><p>L-280 A, Sector Sonagiri<br>BHEL, Bhopal – 462022<br>Madhya Pradesh</p></div>
@@ -732,10 +792,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
         <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <div>
           <h4>Opening Hours</h4>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin-top:0.3rem">
-            <span style="font-size:0.82rem;color:var(--text-muted)">All Days</span>
-            <span style="font-size:0.82rem;color:var(--purple-bright);font-weight:600">11:00 AM – 7:00 PM</span>
-          </div>
+          <p>All Days &nbsp; <b>11:00 AM &ndash; 7:00 PM</b></p>
         </div>
       </div>
     </div>
@@ -778,6 +835,7 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
 
 <!-- FOOTER -->
 <footer>
+<div class="footer-grid">
   <div>
     <div class="footer-top">
       <img class="footer-logo-img" src="assets/7e9e56c3.jpg" alt="Tarasha logo">
@@ -813,6 +871,8 @@ footer{background:var(--bg2);padding:4rem;display:grid;grid-template-columns:2fr
       <li><a href="#contact">Book Now</a></li>
     </ul>
   </div>
+</div>
+<div class="footer-seal"><svg class="medallion"><use href="#medallion"/></svg></div>
 </footer>
 <div class="footer-bottom">
   <p>© 2026 Tarasha's Ladies Beauty Salon, BHEL Bhopal. All rights reserved. | Crafted with 💜</p>
@@ -913,5 +973,57 @@ function sendBooking(e){
 
 document.getElementById('bkDate').min = new Date().toISOString().slice(0,10);  // no past dates
 </script>
+<div class="mobile-bar">
+  <a class="mb-call" href="tel:+919691566637">Call</a>
+  <a class="mb-wa" href="https://wa.me/919691566637" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var nav = document.querySelector('nav');
+  var toggle = document.getElementById('navToggle');
+
+  function setMenu(open){
+    nav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  toggle.addEventListener('click', function(){ setMenu(!nav.classList.contains('open')); });
+  nav.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && nav.classList.contains('open')) setMenu(false);
+  });
+
+  // nav gets a ground once you leave the hero
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('stuck', window.scrollY > 40);
+  }, {passive:true});
+
+  // reveal on scroll — added by JS so the page still reads with scripting off
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -6% 0px', threshold:0.04});
+
+    var sel = '.eyebrow,.section-title,.services-header p,.makeup-header p,.why-header p,.lg-header p,.bg-header p,'
+            + '.cat-block,.makeup-card,.why-card,.bridal-card,.lg-item,.bg-tile,.about-photo-main,.about-text p,'
+            + '.about-stats,.bridal-tagline,.bridal-desc,.btn-gold,.contact-item,.contact-form>*,.lg-cta-wrap,.footer-seal';
+    document.querySelectorAll(sel).forEach(function(el, i){
+      el.classList.add('reveal');
+      // ponytail: stagger cycles every 6 elements; good enough for these grids,
+      // switch to per-parent indexing if a wider grid ever lands out of step
+      el.style.transitionDelay = ((i % 6) * 55) + 'ms';
+      io.observe(el);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
