@@ -22,10 +22,20 @@
   --wa:#12803F; --wa-hi:#0E7038;
   --line:rgba(212,174,88,0.20);
   --line-soft:rgba(247,240,232,0.09);
+  /* Type scale. Root is left at the browser default so a reader who has
+     set a larger base size still gets it. */
+  --t-tag:0.86rem;    /* letterspaced micro-labels — was 0.50–0.62rem */
+  --t-label:0.95rem; /* eyebrows, nav, buttons — was 0.66–0.75rem */
+  --t-sm:1.06rem;       /* pills, card copy, inputs — was 0.80–0.90rem */
+  --t-base:1.18rem;  /* body copy — was 0.95–1rem */
+  --t-md:1.3rem;
+  --t-lg:1.42rem;
+  --t-xl:1.72rem;
+  --t-2xl:2.2rem;
   --shell:min(1240px,100%);
   --pad:clamp(1.25rem,5vw,4.5rem);
 }
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{font-size:106.25%;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :target,section[id],form[id]{scroll-margin-top:5.5rem}
 body{font-family:'Jost',system-ui,sans-serif;font-weight:400;background:var(--ink);color:var(--muted);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
@@ -38,12 +48,12 @@ img{max-width:100%;display:block}
 /* ══ TYPE SYSTEM ══ */
 .display,h1,h2,.cat-title,.stat-num,.contact-form h3{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;color:var(--ivory);letter-spacing:-0.005em}
 .script{font-family:'Sacramento',cursive;font-weight:400;letter-spacing:0.01em}
-.eyebrow{display:block;font-size:0.68rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.eyebrow{display:block;font-size:var(--t-label);font-weight:500;letter-spacing:0.17em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
 .eyebrow::after{content:'';display:block;width:34px;height:1px;background:var(--gold);margin-top:0.9rem;opacity:0.55}
 .center .eyebrow::after{margin-left:auto;margin-right:auto}
 .section-title{font-size:clamp(2rem,3.5vw,3.05rem);line-height:1.08}
 .section-title em{font-style:italic;color:var(--gold-lt)}
-.lede{font-size:1rem;line-height:1.9;max-width:52ch}
+.lede{font-size:var(--t-base);line-height:1.9;max-width:52ch}
 .center{text-align:center}
 .center .lede{margin-inline:auto}
 .shell{width:var(--shell);margin-inline:auto}
@@ -62,12 +72,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   padding:1.1rem var(--pad);transition:background 0.4s,padding 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
 nav.stuck{background:rgba(18,8,16,0.92);backdrop-filter:blur(16px);border-bottom-color:var(--line);padding:0.7rem var(--pad)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
-.nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.55)}
+.nav-logo-img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.55)}
 .nav-brand-text{display:flex;flex-direction:column;line-height:1}
-.nav-brand-name{font-family:'Sacramento',cursive;font-size:1.6rem;color:var(--ivory);line-height:0.95}
-.nav-brand-sub{font-size:0.55rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:0.15rem}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{text-decoration:none;color:var(--muted);font-size:0.74rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color 0.3s;position:relative;padding:0.3rem 0}
+.nav-brand-name{font-family:'Sacramento',cursive;font-size:1.85rem;color:var(--ivory);line-height:0.95}
+.nav-brand-sub{font-size:var(--t-tag);letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:0.15rem}
+.nav-links{display:flex;gap:clamp(1.1rem,2vw,2rem);list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:var(--t-label);font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color 0.3s;position:relative;padding:0.3rem 0}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width 0.35s}
 .nav-links a:hover{color:var(--ivory)}
 .nav-links a:hover::after{width:100%}
@@ -91,37 +101,37 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
   linear-gradient(rgba(18,8,16,0.3),rgba(18,8,16,0.3))}
 .hero-inner{position:relative;z-index:2;padding:8rem var(--pad) 5rem;grid-column:1}
 .hero-emblem{display:flex;align-items:center;gap:0.9rem;margin-bottom:2rem}
-.hero-emblem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.5)}
-.hero-emblem div{font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);line-height:1.9}
+.hero-emblem img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.5)}
+.hero-emblem div{font-size:var(--t-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);line-height:1.9}
 .hero-emblem span{display:block;color:var(--muted);opacity:0.75}
 .hero h1{font-size:clamp(2.5rem,5.6vw,4.9rem);line-height:1.03;margin-bottom:1.4rem;font-weight:400}
 .hero h1 em{font-style:italic;color:var(--gold-lt)}
 /* the salon's own script, echoing the sign — the real neon stays in the photograph */
 .script-name{font-family:'Sacramento',cursive;font-size:clamp(2.1rem,3.4vw,3rem);color:var(--gold-lt);line-height:1;display:inline-block}
-.hero-zone{font-size:0.66rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin:0.6rem 0 1.5rem;font-weight:500}
-.hero-desc{font-size:1rem;line-height:1.9;max-width:44ch;margin-bottom:2.2rem;color:var(--muted)}
+.hero-zone{font-size:var(--t-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin:0.6rem 0 1.5rem;font-weight:500}
+.hero-desc{font-size:var(--t-base);line-height:1.9;max-width:44ch;margin-bottom:2.2rem;color:var(--muted)}
 .hero-ctas{display:flex;gap:0.9rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
 /* magenta means the sign is lit: the salon is open */
-.hero-hours{display:inline-flex;align-items:center;gap:0.75rem;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:1.1rem}
+.hero-hours{display:inline-flex;align-items:center;gap:0.75rem;font-size:var(--t-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:1.1rem}
 .hero-hours::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon),0 0 16px rgba(255,79,174,0.7);animation:lit 3.4s ease-in-out infinite}
 @keyframes lit{0%,100%{opacity:1}50%{opacity:0.55}}
 .hero-hours b{color:var(--gold-lt);font-weight:500;letter-spacing:0.1em}
 .hero-badge{position:absolute;right:var(--pad);bottom:7.5rem;z-index:2;text-align:right;border-right:1px solid var(--line);padding-right:1.2rem}
 .hero-badge .hf-num{font-family:'Bodoni Moda',serif;font-size:2.6rem;color:var(--ivory);line-height:1;font-weight:400}
-.hero-badge .hf-lbl{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-top:0.35rem}
+.hero-badge .hf-lbl{font-size:var(--t-tag);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:0.35rem}
 
 /* ══ BUTTONS ══ */
-.btn-primary{background:var(--gold);color:var(--ink);text-decoration:none;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+.btn-primary{background:var(--gold);color:var(--ink);text-decoration:none;font-size:var(--t-label);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
   padding:0.95rem 2rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s;display:inline-block;border:1px solid var(--gold)}
 .btn-primary:hover{background:var(--gold-lt);border-color:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,174,88,0.22)}
 .btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;background:transparent;border:1px solid var(--line-soft);color:var(--ivory);text-decoration:none;
-  font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;padding:0.95rem 1.7rem;border-radius:999px;transition:border-color 0.3s,background 0.3s}
+  font-size:var(--t-label);font-weight:400;letter-spacing:0.16em;text-transform:uppercase;padding:0.95rem 1.7rem;border-radius:999px;transition:border-color 0.3s,background 0.3s}
 .btn-ghost:hover{border-color:var(--gold);background:rgba(212,174,88,0.07)}
-.btn-wa{display:inline-flex;align-items:center;gap:0.55rem;background:var(--wa);color:#fff;text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;
+.btn-wa{display:inline-flex;align-items:center;gap:0.55rem;background:var(--wa);color:#fff;text-decoration:none;font-size:var(--t-label);font-weight:500;letter-spacing:0.1em;
   padding:0.95rem 1.6rem;border-radius:999px;transition:background 0.3s,transform 0.3s}
 .btn-wa:hover{background:var(--wa-hi);transform:translateY(-2px)}
 .btn-wa svg{width:16px;height:16px;fill:currentColor}
-.btn-gold{display:inline-block;text-decoration:none;background:var(--gold);color:var(--ink);font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+.btn-gold{display:inline-block;text-decoration:none;background:var(--gold);color:var(--ink);font-size:var(--t-label);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
   padding:0.95rem 2rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,174,88,0.24)}
 
@@ -129,8 +139,8 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .marquee-wrap{background:var(--ink-2);padding:1.05rem 0;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marquee-track{display:inline-flex;white-space:nowrap;animation:marquee 62s linear infinite}
-.marquee-item{font-size:0.68rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);padding:0 1.6rem;display:inline-flex;align-items:center;gap:1.6rem;font-weight:400}
-.marquee-gem{color:var(--gold);font-size:0.5rem;opacity:0.8}
+.marquee-item{font-size:var(--t-label);letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);padding:0 1.6rem;display:inline-flex;align-items:center;gap:1.6rem;font-weight:400}
+.marquee-gem{color:var(--gold);font-size:var(--t-tag);opacity:0.8}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ══ LANDING GALLERY ══ */
@@ -144,12 +154,12 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .lg-item:hover img{filter:brightness(1) saturate(1.12);transform:scale(1.05)}
 .lg-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,8,16,0.85) 0%,rgba(18,8,16,0.1) 55%);pointer-events:none;z-index:2}
 .lg-item-caption{position:absolute;bottom:1.1rem;left:1.2rem;right:1.2rem;z-index:3;pointer-events:none}
-.lg-item-caption h4{font-family:'Bodoni Moda',serif;font-size:1.05rem;font-weight:500;color:var(--ivory);font-style:italic}
-.lg-item-caption p{font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;font-weight:500}
+.lg-item-caption h4{font-family:'Bodoni Moda',serif;font-size:var(--t-md);font-weight:500;color:var(--ivory);font-style:italic}
+.lg-item-caption p{font-size:var(--t-tag);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;font-weight:500}
 .lg-item.lg-feature{grid-row:span 2}
-.lg-item.lg-feature .lg-item-caption h4{font-size:1.5rem}
+.lg-item.lg-feature .lg-item-caption h4{font-size:var(--t-xl)}
 .lg-cta-wrap{text-align:center;margin-top:2.8rem}
-.lg-cta{display:inline-flex;align-items:center;gap:0.7rem;color:var(--gold-lt);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+.lg-cta{display:inline-flex;align-items:center;gap:0.7rem;color:var(--gold-lt);text-decoration:none;font-size:var(--t-label);font-weight:500;letter-spacing:0.17em;text-transform:uppercase;
   border-bottom:1px solid var(--line);padding-bottom:0.5rem;transition:color 0.3s,border-color 0.3s}
 .lg-cta:hover{color:var(--ivory);border-color:var(--gold)}
 .lg-cta::after{content:'\2192';transition:transform 0.3s}
@@ -164,10 +174,10 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .cat-subtitle{grid-column:1;grid-row:2;align-self:start}
 .services-pills{grid-column:2;grid-row:1 / span 2}
 .cat-block:last-child{border-bottom:1px solid var(--line-soft)}
-.cat-title{font-size:1.5rem;line-height:1.2;margin-bottom:0.5rem}
-.cat-subtitle{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:34ch}
+.cat-title{font-size:var(--t-xl);line-height:1.2;margin-bottom:0.5rem}
+.cat-subtitle{font-size:var(--t-sm);color:var(--muted);line-height:1.7;max-width:34ch}
 .services-pills{display:flex;flex-wrap:wrap;gap:0.5rem;align-content:flex-start}
-.pill{border:1px solid var(--line-soft);color:var(--ivory);font-size:0.82rem;font-weight:400;padding:0.5rem 1.05rem;border-radius:999px;transition:border-color 0.3s,color 0.3s,background 0.3s;cursor:default}
+.pill{border:1px solid var(--line-soft);color:var(--ivory);font-size:var(--t-sm);font-weight:400;padding:0.5rem 1.05rem;border-radius:999px;transition:border-color 0.3s,color 0.3s,background 0.3s;cursor:default}
 .pill:hover{border-color:rgba(212,174,88,0.6);color:var(--gold-lt)}
 .pill.special,.pill.gold{border-color:rgba(212,174,88,0.45);color:var(--gold-lt);font-weight:400}
 .pill.special:hover,.pill.gold:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
@@ -179,8 +189,8 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .makeup-card::before{content:'';position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--gold);transition:width 0.45s}
 .makeup-card:hover::before{width:100%}
 .makeup-card:hover{padding-left:0.7rem}
-.makeup-card h4{font-family:'Bodoni Moda',serif;font-size:1.2rem;font-weight:500;color:var(--ivory);margin-bottom:0.3rem}
-.makeup-card p{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:40ch}
+.makeup-card h4{font-family:'Bodoni Moda',serif;font-size:var(--t-lg);font-weight:500;color:var(--ivory);margin-bottom:0.3rem}
+.makeup-card p{font-size:var(--t-sm);color:var(--muted);line-height:1.7;max-width:40ch}
 
 /* ══ ABOUT ══ */
 .about-inner{width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
@@ -188,28 +198,28 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .about-photo-main::before{content:'';position:absolute;inset:-14px -14px 14px 14px;border:1px solid var(--line);border-radius:3px;pointer-events:none}
 .about-photo-main img{width:100%;height:clamp(360px,46vw,520px);object-fit:cover;object-position:center top;border-radius:3px;position:relative;z-index:1}
 .about-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.6rem;background:linear-gradient(transparent,rgba(10,4,9,0.92));z-index:2;border-radius:0 0 3px 3px}
-.about-photo-overlay p{font-family:'Bodoni Moda',serif;font-style:italic;font-size:0.98rem;color:var(--gold-lt)}
-.about-text p{font-size:0.97rem;line-height:1.9;margin:1.1rem 0;max-width:50ch}
+.about-photo-overlay p{font-family:'Bodoni Moda',serif;font-style:italic;font-size:var(--t-base);color:var(--gold-lt)}
+.about-text p{font-size:var(--t-base);line-height:1.9;margin:1.1rem 0;max-width:50ch}
 .about-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:2.4rem;border-top:1px solid var(--line-soft)}
 .stat-card{padding:1.5rem 1rem 0;text-align:center;border-right:1px solid var(--line-soft)}
 .stat-card:last-child{border-right:0}
-.stat-num{font-size:2.2rem;line-height:1;color:var(--gold-lt);font-weight:400}
-.stat-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem}
+.stat-num{font-size:var(--t-2xl);line-height:1;color:var(--gold-lt);font-weight:400}
+.stat-label{font-size:var(--t-tag);letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem}
 
 /* ══ BRIDAL — the medallion watermark lives here ══ */
 .bridal{background:var(--ink-3);position:relative;overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 .bridal-watermark{position:absolute;top:50%;right:-14%;width:min(760px,86vw);height:min(760px,86vw);transform:translateY(-50%);color:var(--gold);opacity:0.055;pointer-events:none;z-index:0}
 .bridal-inner{position:relative;z-index:1;width:var(--shell);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
-.bridal-tagline{font-family:'Sacramento',cursive;font-size:1.9rem;color:var(--gold-lt);margin:1.2rem 0 1.4rem;line-height:1.2}
-.bridal-desc{font-size:0.97rem;line-height:1.9;margin-bottom:2.2rem;max-width:50ch}
+.bridal-tagline{font-family:'Sacramento',cursive;font-size:2.2rem;color:var(--gold-lt);margin:1.2rem 0 1.4rem;line-height:1.2}
+.bridal-desc{font-size:var(--t-base);line-height:1.9;margin-bottom:2.2rem;max-width:50ch}
 .bridal-cards{display:flex;flex-direction:column}
 .bridal-card{padding:1.35rem 0;border-top:1px solid var(--line-soft);display:flex;gap:1.2rem;align-items:baseline;transition:padding-left 0.35s}
 .bridal-card:last-child{border-bottom:1px solid var(--line-soft)}
 .bridal-card:hover{padding-left:0.7rem}
 .bridal-card::before{content:'';width:6px;height:6px;border-radius:50%;border:1px solid var(--gold);flex-shrink:0;transform:translateY(-3px);transition:background 0.35s}
 .bridal-card:hover::before{background:var(--gold)}
-.bridal-card h4{font-family:'Bodoni Moda',serif;font-size:1.08rem;color:var(--ivory);margin-bottom:0.25rem;font-weight:500}
-.bridal-card p{font-size:0.84rem;color:var(--muted);line-height:1.7}
+.bridal-card h4{font-family:'Bodoni Moda',serif;font-size:var(--t-md);color:var(--ivory);margin-bottom:0.25rem;font-weight:500}
+.bridal-card p{font-size:var(--t-sm);color:var(--muted);line-height:1.7}
 
 /* ══ WHY — hairline columns ══ */
 .why-inner{width:var(--shell);margin:0 auto}
@@ -220,8 +230,8 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .why-card:not(:first-child){padding-left:1.8rem}
 .why-card::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.5s}
 .why-card:hover::before{width:100%}
-.why-card h4{font-family:'Bodoni Moda',serif;font-size:1.15rem;color:var(--ivory);margin-bottom:0.5rem;font-weight:500}
-.why-card p{font-size:0.85rem;color:var(--muted);line-height:1.75}
+.why-card h4{font-family:'Bodoni Moda',serif;font-size:var(--t-lg);color:var(--ivory);margin-bottom:0.5rem;font-weight:500}
+.why-card p{font-size:var(--t-sm);color:var(--muted);line-height:1.75}
 
 /* ══ BRIDAL GALLERY ══ */
 .bridal-gallery{background:var(--ink-2);border-top:1px solid var(--line-soft)}
@@ -235,14 +245,14 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .bg-tile:hover::before{opacity:1}
 .bg-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
 .bg-feature img{position:absolute;inset:0}
-.bg-feature .bg-tile-badge{font-size:0.62rem;bottom:1.3rem;left:1.4rem;right:1.4rem}
+.bg-feature .bg-tile-badge{font-size:var(--t-tag);bottom:1.3rem;left:1.4rem;right:1.4rem}
 .bg-tile img{width:100%;height:100%;object-fit:cover;filter:brightness(0.86) saturate(1.03);transition:filter 0.6s,transform 0.9s cubic-bezier(.2,.7,.3,1)}
 .bg-tile:hover img{filter:brightness(1.02) saturate(1.12);transform:scale(1.05)}
-.bg-tile-badge{position:absolute;bottom:0.9rem;left:0.9rem;right:0.9rem;font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-lt);
+.bg-tile-badge{position:absolute;bottom:0.9rem;left:0.9rem;right:0.9rem;font-size:var(--t-tag);letter-spacing:0.17em;text-transform:uppercase;color:var(--gold-lt);
   font-weight:500;z-index:3;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;text-shadow:0 1px 8px rgba(0,0,0,0.9)}
 .bg-tile:hover .bg-tile-badge{opacity:1;transform:translateY(0)}
 .bg-tile-zoom{position:absolute;top:0.9rem;right:0.9rem;width:30px;height:30px;border-radius:50%;border:1px solid rgba(247,240,232,0.5);
-  display:flex;align-items:center;justify-content:center;z-index:3;opacity:0;transform:scale(0.8);transition:opacity 0.35s,transform 0.35s;color:var(--ivory);font-size:0.75rem;
+  display:flex;align-items:center;justify-content:center;z-index:3;opacity:0;transform:scale(0.8);transition:opacity 0.35s,transform 0.35s;color:var(--ivory);font-size:var(--t-label);
   background:rgba(18,8,16,0.5);backdrop-filter:blur(4px)}
 .bg-tile:hover .bg-tile-zoom{opacity:1;transform:scale(1)}
 
@@ -255,11 +265,11 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .lb-close,.lb-nav{background:transparent;border:1px solid rgba(247,240,232,0.28);color:var(--ivory);border-radius:50%;cursor:pointer;
   display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s}
 .lb-close:hover,.lb-nav:hover{border-color:var(--gold);background:rgba(212,174,88,0.12)}
-.lb-close{position:absolute;top:-3.2rem;right:0;width:38px;height:38px;font-size:1rem}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:1.4rem;z-index:2}
+.lb-close{position:absolute;top:-3.2rem;right:0;width:38px;height:38px;font-size:var(--t-base)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:var(--t-xl);z-index:2}
 .lb-prev{left:-3.6rem}
 .lb-next{right:-3.6rem}
-.lb-counter{position:absolute;bottom:-2.6rem;left:50%;transform:translateX(-50%);font-size:0.66rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted)}
+.lb-counter{position:absolute;bottom:-2.6rem;left:50%;transform:translateX(-50%);font-size:var(--t-label);letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)}
 .lb-counter span{color:var(--gold-lt)}
 
 /* ══ CONTACT ══ */
@@ -268,29 +278,29 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)
 .contact-item:last-of-type{border-bottom:1px solid var(--line-soft)}
 .contact-icon{width:34px;height:34px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold)}
 .contact-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
-.contact-item h4{font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem;font-weight:500}
-.contact-item p,.contact-item a{font-size:0.95rem;color:var(--ivory);font-weight:400;text-decoration:none;line-height:1.7}
+.contact-item h4{font-size:var(--t-tag);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem;font-weight:500}
+.contact-item p,.contact-item a{font-size:var(--t-base);color:var(--ivory);font-weight:400;text-decoration:none;line-height:1.7}
 .contact-item a:hover{color:var(--gold-lt)}
-.contact-form h3{font-size:1.9rem;margin-bottom:0.5rem}
-.form-sub{font-size:0.88rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.7;max-width:44ch}
+.contact-form h3{font-size:var(--t-2xl);margin-bottom:0.5rem}
+.form-sub{font-size:var(--t-sm);color:var(--muted);margin-bottom:1.8rem;line-height:1.7;max-width:44ch}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem}
 .form-grid.full{grid-template-columns:1fr}
-.inp{padding:0.9rem 1rem;border:1px solid var(--line-soft);border-radius:3px;background:rgba(247,240,232,0.03);font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:400;
+.inp{padding:0.9rem 1rem;border:1px solid var(--line-soft);border-radius:3px;background:rgba(247,240,232,0.03);font-family:'Jost',sans-serif;font-size:var(--t-sm);font-weight:400;
   color:var(--ivory);outline:none;transition:border-color 0.3s,background 0.3s;width:100%}
 .inp:focus{border-color:var(--gold);background:rgba(212,174,88,0.05)}
 .inp::placeholder{color:var(--muted);opacity:0.75}
 .inp:user-invalid{border-color:rgba(255,79,174,0.55)}
 select.inp{cursor:pointer;color:var(--ivory)}
 select.inp option{background:var(--ink-3);color:var(--ivory)}
-.btn-submit{width:100%;background:var(--gold);color:var(--ink);border:1px solid var(--gold);cursor:pointer;font-family:'Jost',sans-serif;font-size:0.74rem;font-weight:600;
+.btn-submit{width:100%;background:var(--gold);color:var(--ink);border:1px solid var(--gold);cursor:pointer;font-family:'Jost',sans-serif;font-size:var(--t-label);font-weight:600;
   letter-spacing:0.18em;text-transform:uppercase;padding:1.05rem;border-radius:999px;transition:background 0.3s,transform 0.3s,box-shadow 0.3s;margin-top:0.7rem}
 .btn-submit:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,174,88,0.22)}
 
 /* ══ MAP STRIP ══ */
 .map-strip{background:var(--ink-2);padding:2.6rem var(--pad);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-top:1px solid var(--line-soft)}
-.map-strip strong{font-family:'Bodoni Moda',serif;color:var(--ivory);display:block;font-size:1.15rem;font-weight:500;margin-bottom:0.35rem}
-.map-strip p{color:var(--muted);font-size:0.88rem;max-width:52ch;line-height:1.7}
-.btn-map{display:inline-flex;align-items:center;gap:0.6rem;border:1px solid var(--gold);color:var(--gold-lt);text-decoration:none;font-size:0.72rem;font-weight:500;
+.map-strip strong{font-family:'Bodoni Moda',serif;color:var(--ivory);display:block;font-size:var(--t-lg);font-weight:500;margin-bottom:0.35rem}
+.map-strip p{color:var(--muted);font-size:var(--t-sm);max-width:52ch;line-height:1.7}
+.btn-map{display:inline-flex;align-items:center;gap:0.6rem;border:1px solid var(--gold);color:var(--gold-lt);text-decoration:none;font-size:var(--t-label);font-weight:500;
   letter-spacing:0.16em;text-transform:uppercase;padding:0.85rem 1.7rem;border-radius:999px;transition:background 0.3s,color 0.3s;white-space:nowrap}
 .btn-map:hover{background:var(--gold);color:var(--ink)}
 
@@ -298,32 +308,82 @@ select.inp option{background:var(--ink-3);color:var(--ivory)}
 footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;border-top:1px solid var(--line-soft)}
 .footer-grid{width:var(--shell);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
 .footer-top{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
-.footer-logo-img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.5)}
-.footer-brand{font-family:'Sacramento',cursive;font-size:2rem;color:var(--ivory);line-height:1}
+.footer-logo-img{width:68px;height:68px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,174,88,0.5)}
+.footer-brand{font-family:'Sacramento',cursive;font-size:2.3rem;color:var(--ivory);line-height:1}
 .footer-brand span{color:var(--gold)}
-.footer-tagline{font-family:'Bodoni Moda',serif;font-style:italic;font-size:0.95rem;color:var(--muted);margin-bottom:0.5rem}
-.footer-zone{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
-.footer-contact-quick{font-size:0.88rem;color:var(--muted);line-height:2.1}
+.footer-tagline{font-family:'Bodoni Moda',serif;font-style:italic;font-size:var(--t-base);color:var(--muted);margin-bottom:0.5rem}
+.footer-zone{font-size:var(--t-tag);letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+.footer-contact-quick{font-size:var(--t-sm);color:var(--muted);line-height:2.1}
 .footer-contact-quick a{color:var(--ivory);text-decoration:none;border-bottom:1px solid var(--line);transition:color 0.3s}
 .footer-contact-quick a:hover{color:var(--gold-lt)}
-.footer-col h4{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
+.footer-col h4{font-size:var(--t-tag);letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
 .footer-col ul{list-style:none}
 .footer-col li{margin-bottom:0.7rem}
-.footer-col a{font-size:0.88rem;color:var(--muted);text-decoration:none;transition:color 0.3s;font-weight:400}
+.footer-col a{font-size:var(--t-sm);color:var(--muted);text-decoration:none;transition:color 0.3s;font-weight:400}
 .footer-col a:hover{color:var(--gold-lt)}
 .footer-seal{display:flex;flex-direction:column;align-items:center;gap:1rem;padding:3rem 0 0;margin-top:3rem;border-top:1px solid var(--line-soft)}
 .footer-seal .medallion{width:44px;height:44px;opacity:0.75}
 .footer-bottom{background:var(--ink);padding:0 var(--pad) 2rem;text-align:center}
-.footer-bottom p{font-size:0.7rem;color:var(--muted);opacity:0.72;letter-spacing:0.04em}
+.footer-bottom p{font-size:var(--t-label);color:var(--muted);opacity:0.72;letter-spacing:0.04em}
 
 /* ══ STICKY MOBILE ACTION BAR ══ */
 .mobile-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(18,8,16,0.96);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);padding:0.7rem 0.9rem calc(0.7rem + env(safe-area-inset-bottom));gap:0.7rem}
-.mobile-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;font-size:0.74rem;font-weight:500;
+.mobile-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;font-size:var(--t-label);font-weight:500;
   letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem;border-radius:999px}
 .mb-call{border:1px solid var(--gold);color:var(--gold-lt)}
 .mb-wa{background:var(--wa);color:#fff}
 .mb-wa svg{width:15px;height:15px;fill:currentColor}
+
+/* ══ INSTAGRAM — the work these two accounts hold lives off-site ══ */
+.ig-row{font-size:var(--t-sm);color:var(--muted);line-height:1.85;margin-top:2.2rem;max-width:52ch}
+.ig-link{display:inline-flex;align-items:center;gap:0.45rem;color:var(--gold-lt);text-decoration:none;
+  font-weight:500;border-bottom:1px solid var(--line);padding-bottom:0.12rem;white-space:nowrap;
+  transition:color 0.3s,border-color 0.3s}
+.ig-link svg{width:1.1em;height:1.1em;flex-shrink:0}
+.ig-link:hover{color:var(--ivory);border-color:var(--gold)}
+.makeup-inner .ig-row{margin-top:2.6rem;text-align:center;margin-inline:auto}
+
+/* ══ PRICING — the salon's own package ladder ==
+   Every package costs less than the sum of its parts, and the gap widens as
+   you climb (Rs 221 at the bottom, Rs 951 at the top). That gap is the whole
+   reason the packages exist, so it gets the one hot accent on the page. ══ */
+.pricing-inner{width:var(--shell);margin:0 auto}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;
+  background:var(--line-soft);border:1px solid var(--line-soft);margin-top:3rem}
+.pkg{display:flex;flex-direction:column;background:var(--ink);padding:1.9rem 1.6rem 1.5rem;position:relative}
+.pkg::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.5s}
+.pkg:hover::before{width:100%}
+.pkg-no{display:block;font-size:var(--t-tag);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.pkg-price{font-family:'Bodoni Moda',Georgia,serif;font-size:2.6rem;line-height:1;color:var(--ivory);font-weight:400;margin:0.55rem 0 1.4rem}
+.pkg-list{list-style:none;flex:1;margin-bottom:1.4rem}
+.pkg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-size:var(--t-sm);color:var(--muted);padding:0.55rem 0;border-bottom:1px dotted rgba(217,203,214,0.16)}
+.pkg-list li:last-child{border-bottom:0}
+.pkg-list b{color:var(--ivory);font-weight:400;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pkg-foot{border-top:1px solid var(--line);padding-top:1rem;display:flex;flex-direction:column;gap:0.3rem}
+.pkg-sep{font-size:var(--t-tag);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);opacity:0.85}
+.pkg-save{font-size:var(--t-base);color:var(--neon-soft);font-weight:500;letter-spacing:0.03em}
+
+/* ══ RATE CARDS — the a-la-carte lists, same ledger, no package maths ══ */
+.rate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2.5rem 3rem;margin-top:4rem}
+.rate h3{font-family:'Bodoni Moda',Georgia,serif;font-size:var(--t-lg);color:var(--ivory);font-weight:500;
+  padding-bottom:0.8rem;border-bottom:1px solid var(--line)}
+.rate ul{list-style:none}
+.rate li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-size:var(--t-sm);color:var(--muted);padding:0.7rem 0;border-bottom:1px dotted rgba(217,203,214,0.16)}
+.rate li:last-child{border-bottom:0}
+.rate b{color:var(--gold-lt);font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rate-note{font-size:var(--t-sm);color:var(--muted);line-height:1.75;margin-top:0.9rem}
+.rate-note a{color:var(--gold-lt);text-decoration:none;border-bottom:1px solid var(--line)}
+.rate-note a:hover{color:var(--ivory)}
+.pricing-foot{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--line-soft);
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.pricing-foot p{font-size:var(--t-base);color:var(--muted);max-width:56ch;line-height:1.75}
+@media(max-width:600px){
+  .pkg{padding:1.6rem 1.3rem 1.3rem}
+  .pkg-price{font-size:2.3rem}
+}
 
 /* ══ FLOATING WHATSAPP — reachable from anywhere on the page ══ */
 .wa-float{position:fixed;right:clamp(1.1rem,2.6vw,2.2rem);bottom:clamp(1.1rem,2.6vw,2.2rem);z-index:180;
@@ -358,15 +418,15 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   .why-card:nth-child(odd){padding-left:0}
   .why-card:nth-child(even){padding-left:1.8rem}
 }
-@media(max-width:860px){
+@media(max-width:1024px){
   /* backdrop-filter makes nav a containing block for fixed children, which
      traps the menu inside the 64px bar — keep the scrolled nav unfiltered here */
   nav.stuck{backdrop-filter:none;background:rgba(18,8,16,0.97)}
   .nav-links{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:1.8rem;background:var(--ink);
     transform:translateY(-100%);visibility:hidden;transition:transform 0.5s cubic-bezier(.6,0,.2,1),visibility 0.5s;z-index:-1}
   nav.open .nav-links{transform:translateY(0);visibility:visible}
-  .nav-links a{font-family:'Bodoni Moda',serif;font-size:1.5rem;letter-spacing:0.04em;text-transform:none;color:var(--ivory);font-weight:400}
-  .nav-links .btn-nav{font-family:'Jost',sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.16em;padding:0.8rem 1.8rem}
+  .nav-links a{font-family:'Bodoni Moda',serif;font-size:var(--t-xl);letter-spacing:0.04em;text-transform:none;color:var(--ivory);font-weight:400}
+  .nav-links .btn-nav{font-family:'Jost',sans-serif;font-size:var(--t-sm);text-transform:uppercase;letter-spacing:0.16em;padding:0.8rem 1.8rem}
   .nav-toggle{display:block;z-index:2}
   nav.open{background:transparent;border-bottom-color:transparent}
   .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:2rem}
@@ -413,7 +473,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 
 /* content defaults */
 .section-title{margin-bottom:1rem}
-.services-header p:not(.eyebrow),.makeup-header p:not(.eyebrow),.why-header p:not(.eyebrow),.lg-header p:not(.eyebrow),.bg-header p:not(.eyebrow){font-size:1rem;line-height:1.9;color:var(--muted);max-width:58ch;margin:0.4rem auto 0}
+.services-header p:not(.eyebrow),.makeup-header p:not(.eyebrow),.why-header p:not(.eyebrow),.lg-header p:not(.eyebrow),.bg-header p:not(.eyebrow){font-size:var(--t-base);line-height:1.9;color:var(--muted);max-width:58ch;margin:0.4rem auto 0}
 .contact-inner .section-title{margin-bottom:2rem}
 .contact-item b{color:var(--gold-lt);font-weight:500}
 </style>
@@ -421,6 +481,13 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 <body>
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <symbol id="ig" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.7">
+      <rect x="2.7" y="2.7" width="18.6" height="18.6" rx="5.2"/>
+      <circle cx="12" cy="12" r="4.3"/>
+    </g>
+    <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor"/>
+  </symbol>
   <symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
   <symbol id="medallion" viewBox="0 0 48 48">
     <g fill="none" stroke="currentColor" stroke-width="0.9">
@@ -444,6 +511,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#about">Our Team</a></li>
     <li><a href="#bridal">Bridal</a></li>
     <li><a href="#makeup">Makeup</a></li>
@@ -602,7 +670,16 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
         <span class="pill">Silver Facial</span><span class="pill">Pearl Facial</span>
         <span class="pill">Oxygen Facial</span><span class="pill">Thermo Herb Facial</span>
         <span class="pill">Clean-Up (Basic)</span><span class="pill">Advanced Clean-Up</span>
-        <span class="pill">Bleach</span>
+        <span class="pill">Bleach</span><span class="pill">Gel Facial</span>
+        <span class="pill">Diamond Facial</span><span class="pill">Korean Facial</span>
+        <span class="pill">Hydra Facial</span><span class="pill">Vitamin C Facial</span>
+        <span class="pill">Orange Peel Facial</span><span class="pill">Salicylic Acid (Acne)</span>
+        <span class="pill">Anti-Acne Facial</span><span class="pill">Anti-Ageing Facial</span>
+        <span class="pill">Anti-Pigmentation Facial</span><span class="pill">Pigmentation Facial</span>
+        <span class="pill">Tan Removal Facial</span><span class="pill">Skin Lightening Facial</span>
+        <span class="pill">Skin Tightening Facial</span><span class="pill">Skin Brightening Facial</span>
+        <span class="pill">Skin Whitening Facial</span><span class="pill">Skin Hydrating Facial</span>
+        <span class="pill">Skin Glowing Facial</span><span class="pill">Skin Illuminating Facial</span>
       </div>
     </div>
     <div class="cat-block">
@@ -636,6 +713,197 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
 </section>
 
 <!-- MAKEUP -->
+<!-- PRICING -->
+<section class="pricing band" id="pricing">
+  <div class="pricing-inner">
+    <div class="services-header center">
+      <p class="eyebrow">What It Costs</p>
+      <h2 class="section-title">Packages &amp; <em>Rates</em></h2>
+      <p>Eight packages, each priced below what the same treatments cost booked one by one. Every rate below is in rupees and is what you pay at the salon.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <article class="pkg">
+        <span class="pkg-no">Package 1</span>
+        <p class="pkg-price">₹599</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Clean-up</span><b>₹400</b></li>
+        <li><span>Hand / leg wax</span><b>₹150</b></li>
+        <li><span>Eyebrow, upper lip, forehead</span><b>₹70</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹820 booked separately</span>
+          <span class="pkg-save">You save ₹221</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 2</span>
+        <p class="pkg-price">₹999</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Facial</span><b>₹500</b></li>
+        <li><span>Hands & legs, with under arms</span><b>₹250</b></li>
+        <li><span>Haircut + hair wash</span><b>₹200</b></li>
+        <li><span>Eyebrow, upper lip, forehead</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹1,250 booked separately</span>
+          <span class="pkg-save">You save ₹251</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 3</span>
+        <p class="pkg-price">₹1,499</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Facial</span><b>₹700</b></li>
+        <li><span>Rica wax, half — hands, legs, under arms</span><b>₹600</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹1,800 booked separately</span>
+          <span class="pkg-save">You save ₹301</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 4</span>
+        <p class="pkg-price">₹2,499</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Facial</span><b>₹1,000</b></li>
+        <li><span>Full hands & legs wax</span><b>₹850</b></li>
+        <li><span>Hair spa</span><b>₹500</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹2,850 booked separately</span>
+          <span class="pkg-save">You save ₹351</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 5</span>
+        <p class="pkg-price">₹3,999</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Facial</span><b>₹1,500</b></li>
+        <li><span>Full body wax</span><b>₹1,850</b></li>
+        <li><span>Hair spa</span><b>₹600</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹4,450 booked separately</span>
+          <span class="pkg-save">You save ₹451</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 6</span>
+        <p class="pkg-price">₹5,999</p>
+        <ul class="pkg-list">
+        <li><span>De-tan / bleach</span><b>₹200</b></li>
+        <li><span>Facial</span><b>₹1,500</b></li>
+        <li><span>Full body wax</span><b>₹1,850</b></li>
+        <li><span>Body bleach</span><b>₹1,500</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Manicure</span><b>₹600</b></li>
+        <li><span>Pedicure</span><b>₹700</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹6,650 booked separately</span>
+          <span class="pkg-save">You save ₹651</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 7</span>
+        <p class="pkg-price">₹6,999</p>
+        <ul class="pkg-list">
+        <li><span>Facial</span><b>₹2,000</b></li>
+        <li><span>Full body wax</span><b>₹1,850</b></li>
+        <li><span>Body bleach</span><b>₹1,500</b></li>
+        <li><span>Hair spa</span><b>₹800</b></li>
+        <li><span>Manicure</span><b>₹600</b></li>
+        <li><span>Pedicure</span><b>₹700</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹7,750 booked separately</span>
+          <span class="pkg-save">You save ₹751</span>
+        </div>
+      </article>
+      <article class="pkg">
+        <span class="pkg-no">Package 8</span>
+        <p class="pkg-price">₹9,999</p>
+        <ul class="pkg-list">
+        <li><span>Facial (1–2 sittings)</span><b>₹2,500</b></li>
+        <li><span>Body polishing</span><b>₹2,500</b></li>
+        <li><span>Body bleach</span><b>₹1,500</b></li>
+        <li><span>Body wax</span><b>₹1,850</b></li>
+        <li><span>Manicure</span><b>₹600</b></li>
+        <li><span>Pedicure</span><b>₹700</b></li>
+        <li><span>Hair spa</span><b>₹1,000</b></li>
+        <li><span>Hair wash + haircut</span><b>₹200</b></li>
+        <li><span>Face thread</span><b>₹100</b></li>
+        </ul>
+        <div class="pkg-foot">
+          <span class="pkg-sep">₹10,950 booked separately</span>
+          <span class="pkg-save">You save ₹951</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="rate-grid">
+      <div class="rate">
+        <h3>Threading</h3>
+        <ul>
+        <li><span>Eyebrows</span><b>₹40</b></li>
+        <li><span>Upper lip</span><b>₹10</b></li>
+        <li><span>Chin</span><b>₹10</b></li>
+        <li><span>Forehead</span><b>₹10</b></li>
+        <li><span>Side face</span><b>₹40</b></li>
+        <li><span>Neck</span><b>₹20</b></li>
+        <li><span>Full face threading</span><b>₹150</b></li>
+        <li><span>Full face, razor</span><b>₹100</b></li>
+        </ul>
+      </div>
+      <div class="rate">
+        <h3>Manicure</h3>
+        <ul>
+        <li><span>Basic</span><b>₹300</b></li>
+        <li><span>Deluxe</span><b>₹400</b></li>
+        <li><span>Super deluxe</span><b>₹500</b></li>
+        </ul>
+      </div>
+      <div class="rate">
+        <h3>Pedicure</h3>
+        <ul>
+        <li><span>Basic</span><b>₹500</b></li>
+        <li><span>Deluxe</span><b>₹600</b></li>
+        <li><span>Super deluxe</span><b>₹700</b></li>
+        </ul>
+      </div>
+      <div class="rate">
+        <h3>Facials &amp; clean-up</h3>
+        <ul>
+        <li><span>Clean-up</span><b>₹300 – ₹800</b></li>
+        <li><span>Facials</span><b>₹500 – ₹2,000</b></li>
+        <li><span>Extra mask, optional</span><b>₹200</b></li>
+        </ul>
+        <p class="rate-note">The mask add-on is de-tan, bleach or a tightening pack. All 24 facials we offer are listed under <a href="#services">Services</a> — the price depends on which one you choose.</p>
+      </div>
+    </div>
+
+    <div class="pricing-foot">
+      <p>Not sure which package fits? Send us the occasion and your date on WhatsApp and we will tell you what it costs, no obligation.</p>
+      <a href="https://wa.me/919691566637?text=Hi%20Tarasha%2C%20I%20need%20help%20choosing%20a%20package" target="_blank" rel="noopener" class="btn-gold">Ask about a package</a>
+    </div>
+  </div>
+</section>
+
 <section class="makeup" id="makeup">
   <div class="makeup-inner">
     <div class="makeup-header center">
@@ -653,6 +921,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
       <div class="makeup-card"><h4>Marriage Makeup</h4><p>Timeless bridal beauty that lasts through every ritual</p></div>
       <div class="makeup-card"><h4>Reception Makeup</h4><p>Stunning evening look for your grand reception celebration</p></div>
     </div>
+    <p class="ig-row">Every look above, on real clients, as we finish them: <a class="ig-link" href="https://www.instagram.com/makeupandhairbyjaya" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ig"/></svg>@makeupandhairbyjaya</a></p>
   </div>
 </section>
 
@@ -689,6 +958,7 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
       <p class="bridal-tagline">"Live your own style with Tarasha's"</p>
       <p class="bridal-desc">We offer a complete, head-to-toe bridal experience — from your pre-bridal glow rituals to the final day transformation. Bridal Package includes Pre-bridal therapy, Bridal Makeup, Jewellery, Lehenga and Accessories.</p>
       <a href="https://wa.me/919691566637?text=Hi%20Tarasha%2C%20I%20would%20like%20to%20enquire%20about%20the%20Bridal%20Package" target="_blank" class="btn-gold">Enquire About Bridal Package</a>
+      <p class="ig-row">See which lehengas and gowns are in stock to rent right now: <a class="ig-link" href="https://www.instagram.com/rental_dresses_by_tarasha" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ig"/></svg>@rental_dresses_by_tarasha</a></p>
     </div>
     <div class="bridal-cards">
       <div class="bridal-card"><div><h4>Bridal Makeup</h4><p>HD & traditional bridal looks — Simple, Engagement, Marriage & Reception</p></div></div>
@@ -893,10 +1163,13 @@ footer{background:var(--ink);padding:clamp(3rem,6vw,4.5rem) var(--pad) 3rem;bord
   <div class="footer-col">
     <h4>Bridal & Makeup</h4>
     <ul>
+      <li><a href="#pricing">Packages &amp; Rates</a></li>
       <li><a href="#makeup">Makeup by Occasion</a></li>
       <li><a href="#bridal">Full Bridal Package</a></li>
       <li><a href="#bridal">Lehenga & Gowns</a></li>
       <li><a href="#bridal">Jewellery Rental</a></li>
+      <li><a href="https://www.instagram.com/rental_dresses_by_tarasha" target="_blank" rel="noopener">Rental dresses on Instagram</a></li>
+      <li><a href="https://www.instagram.com/makeupandhairbyjaya" target="_blank" rel="noopener">Makeup &amp; hair on Instagram</a></li>
       <li><a href="#book">Book Now</a></li>
     </ul>
   </div>
@@ -1050,6 +1323,7 @@ bkDate.addEventListener('blur', function(){ if(!this.value) this.type = 'text'; 
 
     var sel = '.eyebrow,.section-title,.services-header p,.makeup-header p,.why-header p,.lg-header p,.bg-header p,'
             + '.cat-block,.makeup-card,.why-card,.bridal-card,.lg-item,.bg-tile,.about-photo-main,.about-text p,'
+            + '.pkg,.rate,.pricing-foot,'
             + '.about-stats,.bridal-tagline,.bridal-desc,.btn-gold,.contact-item,.contact-form>*,.lg-cta-wrap,.footer-seal';
     document.querySelectorAll(sel).forEach(function(el, i){
       el.classList.add('reveal');
